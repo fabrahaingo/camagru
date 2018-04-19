@@ -36,14 +36,14 @@
 /* ===== LOOK LOGIN BOX ===== */
 #login_space {
     width: 330px;
-    height: 230px;
+    height: auto;
     overflow: hidden;
 }
 
 /* ===== LOOK REGISTER BOX ===== */
 #register_space {
     width: 330px;
-    height: 310px;
+    height: auto;
     overflow: hidden;
 }
 
@@ -146,4 +146,26 @@
 #login_form form > #return_home a {
     padding: 6px 0px;
     color: white;
+}
+
+/* ===== DISPLAY OF ERROR MESSAGE ===== */
+.error_message {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(232, 27, 85);
+    text-align: center;
+}
+
+.error_message span {
+    color: white;
+    font-size: 14px;
+    padding: 8px;
+}
+
+.success_message {
+    background: rgba(0, 140, 0, 0.8);
 }

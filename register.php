@@ -8,8 +8,8 @@
     <div id="login_div">
         <div id="register_space">
             <div id="login_form">
-                <form action="register.php" method="POST">
-                    <input type="text" name="login" value="" placeholder="Identifiant"></input>
+                <form action="index.php" method="POST">
+                    <input type="text" name="login" value="" placeholder="Identifiant" autofocus></input>
                     <input type="Email" name="email" value="" placeholder="Email"></input>
                     <input type="password" name="password1" value="" placeholder="Mot de passe (min. 8 caractères + 1 maj.)"></input>
                     <input type="password" name="password2" value="" placeholder="Confirmez votre mot de passe"></input>

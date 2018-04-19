@@ -6,8 +6,9 @@
 </head>
 <body>
     <?php
-    if (isset($_GET['action']) && $_GET['action'] == "register")
+    if (isset($_GET['action']) && $_GET['action'] == "register") {
         include "register.php";
+    }
     else
         include "login.php";
     ?>

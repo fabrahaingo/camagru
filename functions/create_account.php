@@ -11,11 +11,18 @@ if(isset($_POST['register'])){
     $password2 = !empty($_POST['password2']) ? trim($_POST['password2']) : null;
 
     if ($password1 != $password2) {
-        die('Les mots de passe renseignés ne sont pas les mêmes.')
+        ?>
+        <div class="error_message">
+            <span>Les mots de passe fournis ne sont pas identiques, veuillez réessayer</span>
+        </div>
+        <?php
+        return;
     }
+
     //TO ADD: Error checking (username characters, password length...)
 
-    $sql = "SELECT COUNT(login, email) AS num FROM user_accounts WHERE login = :login OR email = :email"; //STEP 1
+    //Check if the login is already taken
+    $sql = "SELECT COUNT(*) AS num FROM user_accounts WHERE login = :login OR email = :email"; //STEP 1
     $stmt = $pdo->prepare($sql); //STEP 2
     $stmt->bindValue(':login', $login); //STEP 3
     $stmt->bindValue(':email', $email);
@@ -26,24 +33,39 @@ if(isset($_POST['register'])){
 
     //TO ADD - Handling method of this error
     if($row['num'] > 0){
-        die('Cet identifiant/email existe déjà !');
+        ?>
+        <div class="error_message">
+            <span>Ce compte existe déjà, veuillez vous connecter</span>
+        </div>
+        <?php
+        return;
     }
+
+    //Check if the email is already taken
 
     $passwordHash = hash('sha3-512', $password1);
 
-    $sql = "INSERT INTO user_accounts (login, email, password) VALUES (:username, :email, :password)"; //STEP 1
+    $sql = "INSERT INTO user_accounts (login, email, password) VALUES (:login, :email, :password)"; //STEP 1
     $stmt = $pdo->prepare($sql); //STEP 2
-    $stmt->bindValue(':username', $username); //STEP 3
+    $stmt->bindValue(':login', $login); //STEP 3
     $stmt->bindValue(':email', $email);
     $stmt->bindValue(':password', $passwordHash);
     $result = $stmt->execute(); //STEP 4
 
     //If execution succeeds
     if($result){
-        echo 'Votre compte a été enregistré, bienvenue parmi nous !';
+        ?>
+        <div class="error_message success_message">
+            <span>Le compte a été créé, bienvenue ! 🤗</span>
+        </div>
+        <?php
     }
     else {
-        die('Le compte n\'a pas pu être créé.');
+        ?>
+        <div class="error_message">
+            <span>Le compte n'a pas pu être créé 😞</span>
+        </div>
+        <?php
     }
 
 }

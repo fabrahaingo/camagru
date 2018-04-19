@@ -8,8 +8,9 @@
     <div id="login_div">
         <div id="login_space">
             <div id="login_form">
+                <?php include "./functions/create_account.php"; ?>
                 <form>
-                    <input type="text" name="login" value="" placeholder="Email ou Identifiant"></input>
+                    <input type="text" name="login" value="" placeholder="Email ou Identifiant" autofocus></input>
                     <input type="password" name="password" value="" placeholder="Mot de passe"></input>
                     <div id="login_links">
                         <a href="#">Mot de passe oublié</a>
