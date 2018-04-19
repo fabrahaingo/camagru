@@ -1,0 +1,149 @@
+/* ===== WHOLE LOGIN SECTION ===== */
+#general_login {
+    background-image: url("http://hdwarena.com/wp-content/uploads/2017/04/Beautiful-Wallpaper.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+/* ===== LOOK OF THE EMPTY HEADER ===== */
+#empty_header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    letter-spacing: 6px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#general_login > a {
+    text-decoration: none;
+}
+
+/* ===== HEIGHT LOGIN SECTION + POSITION LOGIN FORM ==== */
+#login_div {
+    height: calc(100vh - 110px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* ===== LOOK LOGIN BOX ===== */
+#login_space {
+    width: 330px;
+    height: 230px;
+    overflow: hidden;
+}
+
+/* ===== LOOK REGISTER BOX ===== */
+#register_space {
+    width: 330px;
+    height: 310px;
+    overflow: hidden;
+}
+
+/* ===== LOOK LOGIN FORM ===== */
+#login_form form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 14px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+#login_form form ::placeholder {
+    color: rgb(70, 70, 70);
+    font-size: 13px;
+    font-weight: lighter;
+}
+
+#login_form input {
+    padding: 11px;
+    margin: 5px 18px;
+    font-size: 13px;
+    border: none;
+}
+
+#login_form input:focus {
+    outline: none;
+}
+
+#login_form form > #login_links {
+    text-align: center;
+    font-size: 13px;
+    padding: 6px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#login_form form > #login_links a {
+    color: white;
+}
+
+#login_form form > button {
+    padding: 9px;
+    margin: 17px;
+    color: white;
+    font-size: 14px;
+    font-weight: lighter;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 3px;
+    background: rgb(232, 27, 85);
+    filter: brightness(100%);
+    border: none;
+    transition: filter 0.3s;
+
+}
+
+#login_form form > button:hover {
+    filter: brightness(115%);
+    transition: filter 0.3s;
+}
+
+#login_form form > button:active {
+    outline: none;
+}
+
+#login_form form > button:focus {
+    outline: none;
+}
+
+/* ===== SCROLL TO SEE SECTION ===== */
+#scroll_to_see {
+    height: 40px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    animation: floating 2s infinite;
+}
+
+/* ===== FLOATING ANIMATION ===== */
+@keyframes floating {
+    0% {
+        transform: translate(0%, 0%);
+    }
+    50% {
+        transform: translate(0%, -10%);
+    }
+    100% {
+        transform: translate(0%, 0%);
+    }
+}
+
+
+/* ===== REGISTER CENTER LINK ===== */
+#login_form form > #return_home {
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+}
+
+#login_form form > #return_home a {
+    padding: 6px 0px;
+    color: white;
+}
