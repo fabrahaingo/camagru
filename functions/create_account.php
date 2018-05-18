@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-require 'db_connect.php';
+require ('config/setup.php');
 
-if(isset($_POST['register'])){
+if(isset($_POST['register'])) {
 
     $login = !empty($_POST['login']) ? trim($_POST['login']) : null;
     $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
@@ -22,35 +22,33 @@ if(isset($_POST['register'])){
     //TO ADD: Error checking (username characters, password length...)
 
     //Check if the login is already taken
-    $sql = "SELECT COUNT(*) AS num FROM user_accounts WHERE login = :login OR email = :email"; //STEP 1
-    $stmt = $pdo->prepare($sql); //STEP 2
-    $stmt->bindValue(':login', $login); //STEP 3
-    $stmt->bindValue(':email', $email);
-    $stmt->execute(); //STEP 4
+    $sql = "SELECT COUNT(*) AS num FROM users WHERE login = :login OR email = :email"; //STEP 1
+    $req = $dbh->prepare($sql); //STEP 2
+    $req->bindValue(':login', $login); //STEP 3
+    $req->bindValue(':email', $email);
+    $req->execute(); //STEP 4
 
     //Gets the number of rows found in order to know if the user exists
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $req->fetch(PDO::FETCH_ASSOC);
 
     //TO ADD - Handling method of this error
     if($row['num'] > 0){
         ?>
         <div class="error_message">
-            <span>Ce compte existe déjà, veuillez vous connecter</span>
+            <span>Ce login/email existe déjà, veuillez vous connecter</span>
         </div>
         <?php
         return;
     }
 
-    //Check if the email is already taken
-
     $passwordHash = hash('sha3-512', $password1);
 
-    $sql = "INSERT INTO user_accounts (login, email, password) VALUES (:login, :email, :password)"; //STEP 1
-    $stmt = $pdo->prepare($sql); //STEP 2
-    $stmt->bindValue(':login', $login); //STEP 3
-    $stmt->bindValue(':email', $email);
-    $stmt->bindValue(':password', $passwordHash);
-    $result = $stmt->execute(); //STEP 4
+    $sql = "INSERT INTO users (login, email, password) VALUES (:login, :email, :password)"; //STEP 1
+    $req = $dbh->prepare($sql); //STEP 2
+    $req->bindValue(':login', $login); //STEP 3
+    $req->bindValue(':email', $email);
+    $req->bindValue(':password', $passwordHash);
+    $result = $req->execute(); //STEP 4
 
     //If execution succeeds
     if($result){
@@ -69,5 +67,3 @@ if(isset($_POST['register'])){
     }
 
 }
-
-?>

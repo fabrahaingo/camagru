@@ -9,8 +9,9 @@
     if (isset($_GET['action']) && $_GET['action'] == "register") {
         include "register.php";
     }
-    else
+    else {
         include "login.php";
+    }
     ?>
 </body>
 </html>
