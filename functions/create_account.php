@@ -13,7 +13,7 @@ if(isset($_POST['register'])) {
     if ($password1 != $password2) {
         ?>
         <div class="error_message">
-            <span>Les mots de passe fournis ne sont pas identiques, veuillez réessayer</span>
+            <span>The passwords do not match, please try again</span>
         </div>
         <?php
         return;
@@ -35,7 +35,7 @@ if(isset($_POST['register'])) {
     if($row['num'] > 0){
         ?>
         <div class="error_message">
-            <span>Ce login/email existe déjà, veuillez vous connecter</span>
+            <span>The account exists already, please login</span>
         </div>
         <?php
         return;
@@ -54,16 +54,16 @@ if(isset($_POST['register'])) {
     if($result){
         ?>
         <div class="error_message success_message">
-            <span>Le compte a été créé, bienvenue ! 🤗</span>
+            <span>The account has been created, welcome ! 🤗</span>
         </div>
         <?php
     }
     else {
         ?>
         <div class="error_message">
-            <span>Le compte n'a pas pu être créé 😞</span>
+            <span>The account couldn't be created 😞</span>
         </div>
         <?php
     }
-
 }
+?>

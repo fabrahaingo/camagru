@@ -10,18 +10,18 @@
             <div id="login_form">
                 <?php include "./functions/create_account.php"; ?>
                 <form>
-                    <input type="text" name="login" value="" placeholder="Email ou Identifiant" autofocus></input>
-                    <input type="password" name="password" value="" placeholder="Mot de passe"></input>
+                    <input type="text" name="login" value="" placeholder="Email or Username" autofocus></input>
+                    <input type="password" name="password" value="" placeholder="Password"></input>
                     <div id="login_links">
-                        <a href="#">Mot de passe oublié</a>
-                        <a href="index.php?action=register">Devenir membre</a>
+                        <a href="#">I forgot my password</a>
+                        <a href="index.php?action=register">Register</a>
                     </div>
-                    <button type="submit" name="submit">SE CONNECTER</button>
+                    <button type="submit" name="submit">CONNECT</button>
                 </form>
             </div>
         </div>
     </div>
     <div id="scroll_to_see">
-        <span>&darr; &nbsp; &nbsp; &nbsp; Descendez pour admirer la galerie &nbsp; &nbsp; &nbsp; &darr;</span>
+        <span>&darr; &nbsp; &nbsp; &nbsp; Scroll down to see the gallery &nbsp; &nbsp; &nbsp; &darr;</span>
     </div>
 </div>
