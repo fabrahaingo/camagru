@@ -28,7 +28,7 @@ if (isset($_POST['connect'])) {
         <?php
         return;
     }
-    else if ($row['num']) {
+    else {
       //Fills the SESSION variable to be used to know which user is logged in
       $_SESSION['usr_name'] = $login_or_mail;
       ?>
