@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['usr_name'])) {
-  echo ("Please fill the login form in order to access this page.");
+  //If no user is logged in, then redirects to index.php
   header('Location: index.php');
 }
 else {

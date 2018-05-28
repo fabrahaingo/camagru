@@ -1,0 +1,21 @@
+#gallery {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  min-height: calc(100vh - 170px);
+  background-image: url("https://hdbackgroundspot.com//storage/upload/textures-background/textures-background-10.jpg");
+  background-position: center;
+  background-size: cover;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.indiv_gallery {
+  padding: 45px 20px;
+  opacity: 0.9;
+}
+
+.indiv_gallery > img {
+  width: 200px;
+  height: auto;
+}

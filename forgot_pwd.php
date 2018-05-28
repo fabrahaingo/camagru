@@ -11,13 +11,12 @@
                 <?php include "./functions/create_account.php"; ?>
                 <?php include "./functions/login.php"; ?>
                 <form action="index.php" method="POST">
-                    <input type="text" name="login" value="" placeholder="Email or Username" autofocus required></input>
-                    <input type="password" name="password" value="" placeholder="Password" required></input>
+                    <input type="email" name="email" value="" placeholder="Email of your account" autofocus required></input>
                     <div id="login_links">
-                        <a href="index.php?action=forgot">I forgot my password</a>
+                        <a href="index.php">Log in</a>
                         <a href="index.php?action=register">Register</a>
                     </div>
-                    <button type="submit" name="connect">CONNECT</button>
+                    <button type="submit" name="connect">SEND RESET LINK</button>
                 </form>
             </div>
         </div>

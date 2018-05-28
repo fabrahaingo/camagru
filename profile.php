@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php include ("header.php"); ?>
-    <?php include ("gallery.php"); ?>
+    <?php include ("modify_infos.php"); ?>
     <?php include ("footer.php"); ?>
 </body>
 </html>

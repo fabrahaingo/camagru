@@ -1,0 +1,9 @@
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
+  color: whitesmoke;
+  background: black;
+}

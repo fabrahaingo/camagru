@@ -10,11 +10,16 @@ header {
 
 #header_name {
   margin-bottom: 5px;
-  padding-left: 20px;
+  padding-left: 5%;
   font-size: 30px;
   font-family: 'Oswald', sans-serif;
   font-weight: 300;
   letter-spacing: 3px;
+}
+
+#header_name * {
+  text-decoration: none;
+  color: whitesmoke;
 }
 
 #header_menu {
@@ -33,7 +38,6 @@ header {
   color: whitesmoke;
   font-weight: 400;
   font-family: 'Roboto', sans-serif;
-  letter-spacing: 1px;
 }
 
 #header_menu *:hover {

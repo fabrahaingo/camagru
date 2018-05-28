@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+?>
 <html>
 <head>
     <meta charset="utf-8" >
@@ -12,9 +15,14 @@
     else if (isset($_GET['action']) && $_GET['action'] == "register") {
         include "register.php";
     }
+    else if (isset($_GET['action']) && $_GET['action'] == "forgot") {
+        include "forgot_pwd.php";
+    }
     else {
         include "login_page.php";
     }
     ?>
+    <?php include "gallery.php"; ?>
+    <?php include "footer.php"; ?>
 </body>
 </html>
