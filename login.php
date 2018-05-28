@@ -9,7 +9,7 @@
         <div id="login_space">
             <div id="login_form">
                 <?php include "./functions/create_account.php"; ?>
-                <form>
+                <form action="index.php" method="POST">
                     <input type="text" name="login" value="" placeholder="Email or Username" autofocus></input>
                     <input type="password" name="password" value="" placeholder="Password"></input>
                     <div id="login_links">

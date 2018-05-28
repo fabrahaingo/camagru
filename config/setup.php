@@ -12,7 +12,6 @@ try {
 		return;
 	}
 	$dbh->exec($sql);
-	echo "Database created successfully<br>";
 }
 catch (PDOexception $e) {
 	echo "Connection failed: " . $e->getMessage();
@@ -72,4 +71,3 @@ $sql = "CREATE TABLE IF NOT EXISTS pictures (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 $req = $dbh->prepare($sql);
 $sql = $req->execute();
-echo "Tables created successfully<br>";
