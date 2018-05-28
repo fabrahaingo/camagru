@@ -31,8 +31,7 @@ if(isset($_POST['register'])) {
     //Gets the number of rows found in order to know if the user exists
     $row = $req->fetch(PDO::FETCH_ASSOC);
 
-    //TO ADD - Handling method of this error
-    if($row['num'] > 0){
+    if ($row['num'] > 0) {
         ?>
         <div class="error_message">
             <span>The account exists already, please login</span>
@@ -51,7 +50,7 @@ if(isset($_POST['register'])) {
     $result = $req->execute(); //STEP 4
 
     //If execution succeeds
-    if($result){
+    if($result) {
         ?>
         <div class="error_message success_message">
             <span>The account has been created, welcome ! 🤗</span>

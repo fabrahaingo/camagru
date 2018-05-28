@@ -6,11 +6,14 @@
 </head>
 <body>
     <?php
-    if (isset($_GET['action']) && $_GET['action'] == "register") {
+    if (isset($_SESSION['usr_name'])) {
+      header('Location: home.php');
+    }
+    else if (isset($_GET['action']) && $_GET['action'] == "register") {
         include "register.php";
     }
     else {
-        include "login.php";
+        include "login_page.php";
     }
     ?>
 </body>
