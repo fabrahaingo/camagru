@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 require ('config/setup.php');
 
 if (isset($_POST['connect'])) {

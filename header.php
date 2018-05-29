@@ -8,7 +8,7 @@
       <a href="home.php">Gallery</a>
     </div>
     <div>
-      <a href="#">New Picture</a>
+      <a href="new_pic.php">New Picture</a>
     </div>
     <div>
       <a href="profile.php">My Profile</a>
