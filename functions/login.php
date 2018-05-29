@@ -10,16 +10,18 @@ if (isset($_POST['connect'])) {
     $passwordHash = hash('sha3-512', $password);
 
     //Check if the login or email exists
-    $sql = "SELECT COUNT(*) AS num FROM users WHERE login = :login_or_mail AND password = :passwordHash OR email = :login_or_mail AND password = :passwordHash"; //STEP 1
+    $sql = "SELECT login FROM users WHERE login = :login_or_mail AND
+    password = :passwordHash OR email = :login_or_mail AND password = :passwordHash"; //STEP 1
     $req = $dbh->prepare($sql); //STEP 2
     $req->bindValue(':login_or_mail', $login_or_mail); //STEP 3
     $req->bindValue(':passwordHash', $passwordHash);
     $req->execute(); //STEP 4
 
     //Gets the number of rows found in order to know if the user exists
-    $row = $req->fetch(PDO::FETCH_ASSOC);
+    $req = $req->fetch(PDO::FETCH_ASSOC);
 
-    if (!$row['num']) {
+
+    if (!$req) {
       ?>
       <div class="error_message">
           <span>The user doesn't exist or the credentials are not well spelled</span>
@@ -28,8 +30,9 @@ if (isset($_POST['connect'])) {
         return;
     }
     else {
+
       //Fills the SESSION variable to be used to know which user is logged in
-      $_SESSION['usr_name'] = $login_or_mail;
+      $_SESSION['usr_name'] = implode('', $req);
       ?>
       <div class="error_message success_message">
         <span>Login successfull</span>

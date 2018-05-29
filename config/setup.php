@@ -8,9 +8,6 @@ try {
 	$dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
 	$dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$sql = 'CREATE DATABASE IF NOT EXISTS camagru';
-	if ($sql == null) {
-		return;
-	}
 	$dbh->exec($sql);
 }
 catch (PDOexception $e) {
