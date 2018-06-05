@@ -2,7 +2,7 @@
 
 require('config/database.php');
 
-if (isset($_POST['new_username'])) {
+if (isset($_POST['new_password'])) {
     $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
     $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = 'CREATE DATABASE IF NOT EXISTS camagru';
@@ -10,21 +10,16 @@ if (isset($_POST['new_username'])) {
 
     //TO ADD: Check user inputs
 
-    $username = !empty($_POST['new_username']) ? trim($_POST['new_username']) : null;
+    $new_password = !empty($_POST['new_password']) ? trim($_POST['new_password']) : null;
+    $new_password2 = !empty($_POST['new_password2']) ? trim($_POST['new_password2']) : null;
     $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
     $passwordHash = hash('sha3-512', $password);
+    $new_passwordHash = hash('sha3-512', $new_password);
 
-    //Checks if username already taken
-    $sql = "SELECT login FROM camagru.users WHERE login = :username"; //STEP 1
-    $req = $dbh->prepare($sql); //STEP 2
-    $req->bindValue(':username', $username); //STEP 3
-    $req->execute(); //STEP 4
-    $req = $req->fetch(PDO::FETCH_ASSOC);
-
-    if ($req) {
+    if ($new_password !== $new_password2) {
       ?>
       <div class="error_message">
-        This username does already exist, please choose another one
+        Please enter the same password 2 times
       </div>
       <?php
       return;
@@ -49,12 +44,11 @@ if (isset($_POST['new_username'])) {
     else {
       echo ($req);
       //Updates login if right password is given
-      $sql = "UPDATE camagru.users SET login = :new_username WHERE login = :username"; //STEP 1
+      $sql = "UPDATE camagru.users SET password = :new_password WHERE login = :username"; //STEP 1
       $req = $dbh->prepare($sql); //STEP 2
       $req->bindValue(':username', $_SESSION['usr_name']); //STEP 3
-      $req->bindValue(':new_username', $username);
+      $req->bindValue(':new_password', $new_passwordHash);
       $req->execute(); //STEP 4
-      $_SESSION['usr_name'] = $username;
       header('Location: '.$_SERVER['REQUEST_URI']);
     }
 }

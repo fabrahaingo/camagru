@@ -2,35 +2,50 @@
 <?php require "functions/get_email.php" ?>
 <div id="user_infos">
   <div>
+
+    <!-- USERNAME SECTION -->
     <h1>Username</h1>
     <h3>Current Username: <?php echo ($_SESSION['usr_name']); ?> </h3>
     <p>If you wish to change it, please write your new username and confirm with your password:<br>
-      <form action="functions/change_username.php" method="POST">
+      <?php include "./functions/change_username.php"; ?>
+      <form action="profile.php" method="POST">
         <input type="text" name="new_username" value="" placeholder="New username"></input><br>
-        <input type="password" name="password" value="" placeholder="Password"></input>
+        <input type="password" name="password" value="" placeholder="Password"></input><br>
         <input type="submit"></input>
       </form>
     </p>
   </div>
   <div>
+
+    <!-- EMAIL SECTION -->
     <h1>Email</h1>
     <h3>Current Email: <?php echo (ft_get_email($_SESSION['usr_name'])); ?> </h3>
     <p>If you wish to change it, please write your new email adress and confirm with your password:<br>
-      <form action="change_username.php" method="POST">
-        <input type="text" value="" placeholder="New email adress"></input><br>
-        <input type="password" value="" placeholder="Password"></input>
+      <?php include "./functions/change_email.php"; ?>
+      <form action="profile.php" method="POST">
+        <input type="email" name="new_email" value="" placeholder="New email adress"></input><br>
+        <input type="password" name="password" value="" placeholder="Password"></input><br>
+        <input type="submit"></input>
       </form>
     </p>
   </div>
   <div>
+
+    <!-- PASSWORD SECTION -->
     <h1>Password</h1>
     <br>
     <p>If you wish to change your password, please enter a new one (two times for security reasons) then confirm with your current one:<br>
-      <input type="password" value="" placeholder="Your new password"></input><br>
-      <input type="password" value="" placeholder="One last time..."></input><br>
-      <input type="password" value="" placeholder="Current password"></input></p>
+      <?php include "./functions/change_password.php"; ?>
+      <form action="profile.php" method="POST">
+        <input type="password" name="new_password" value="" placeholder="Your new password"></input><br>
+        <input type="password" name="new_password2" value="" placeholder="One last time..."></input><br>
+        <input type="password" name="password" value="" placeholder="Current password"></input></p>
+        <input type="submit"></input>
+      </form>
   </div>
   <div>
+
+    <!-- PREFERENCES SECTION -->
     <h1>Account Preferences</h1>
     <h3>Current mail notifications status:  </h3>
     <p>If you wish to change it, please check (or uncheck) accordingly the checkbox below:<br><br>
