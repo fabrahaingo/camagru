@@ -1,6 +1,7 @@
 <?php
 
 require ('config/setup.php');
+require ('functions/mail.php');
 
 if(isset($_POST['register'])) {
 
@@ -50,6 +51,7 @@ if(isset($_POST['register'])) {
 
     //If execution succeeds
     if($result) {
+        send_mail($login, $email);
         ?>
         <div class="error_message success_message">
             <span>The account has been created, welcome ! 🤗</span>
