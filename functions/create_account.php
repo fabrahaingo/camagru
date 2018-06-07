@@ -40,7 +40,7 @@ if(isset($_POST['register'])) {
         return;
     }
 
-    $passwordHash = hash('sha3-512', $password1);
+    $passwordHash = hash('whirlpool', $password1);
 
     $sql = "INSERT INTO users (login, email, password) VALUES (:login, :email, :password)"; //STEP 1
     $req = $dbh->prepare($sql); //STEP 2

@@ -3,7 +3,7 @@
 require('config/database.php');
 
 if (isset($_POST['new_password'])) {
-    $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
+    $dbh = new PDO('mysql:host=127.0.0.1', $DB_USER, $DB_PASSWORD);
     $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = 'CREATE DATABASE IF NOT EXISTS camagru';
     $dbh->exec($sql);
@@ -13,8 +13,8 @@ if (isset($_POST['new_password'])) {
     $new_password = !empty($_POST['new_password']) ? trim($_POST['new_password']) : null;
     $new_password2 = !empty($_POST['new_password2']) ? trim($_POST['new_password2']) : null;
     $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
-    $passwordHash = hash('sha3-512', $password);
-    $new_passwordHash = hash('sha3-512', $new_password);
+    $passwordHash = hash('whirlpool', $password);
+    $new_passwordHash = hash('whirlpool', $new_password);
 
     if ($new_password !== $new_password2) {
       ?>

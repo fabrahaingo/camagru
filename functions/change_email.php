@@ -3,7 +3,7 @@
 require('config/database.php');
 
 if (isset($_POST['new_email'])) {
-    $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
+    $dbh = new PDO('mysql:host=127.0.0.1', $DB_USER, $DB_PASSWORD);
     $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = 'CREATE DATABASE IF NOT EXISTS camagru';
     $dbh->exec($sql);
@@ -12,7 +12,7 @@ if (isset($_POST['new_email'])) {
 
     $email = !empty($_POST['new_email']) ? trim($_POST['new_email']) : null;
     $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
-    $passwordHash = hash('sha3-512', $password);
+    $passwordHash = hash('whirlpool', $password);
 
     //Checks if email already used
     $sql = "SELECT login FROM camagru.users WHERE email = :email"; //STEP 1

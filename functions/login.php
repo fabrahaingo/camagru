@@ -3,7 +3,7 @@
 require ('config/setup.php');
 
 if (isset($_GET['email']) && isset($_GET['hash'])) {
-  if ($_GET['hash'] == hash('sha3-512', "little secret")) {
+  if ($_GET['hash'] == hash('whirlpool', "little secret")) {
     $sql = "SELECT activated FROM users WHERE email = :email"; //STEP 1
     $act = $dbh->prepare($sql); //STEP 2
     $act->bindValue(':email', $_GET['email']); //STEP 3
@@ -46,7 +46,7 @@ if (isset($_POST['connect'])) {
     $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
     //Creates to password hash to compare with login/email
-    $passwordHash = hash('sha3-512', $password);
+    $passwordHash = hash('whirlpool', $password);
 
     //Check if the login or email exists
     $sql = "SELECT login FROM users WHERE login = :login_or_mail AND
