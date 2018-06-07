@@ -15,7 +15,8 @@
     </div>
     <div>
       <a href="functions/logout.php">Logout out of
-        <?php echo $_SESSION['usr_name'] ?></a>
+        <?php echo $_SESSION['usr_name'] ?>
+      </a>
     </div>
   </div>
 </header>

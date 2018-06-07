@@ -4,13 +4,15 @@
 require ('database.php');
 
 // DATABASE INITIALIZATION
-try {
+try
+{
 	$dbh = new PDO('mysql:host=127.0.0.1', $DB_USER, $DB_PASSWORD);
 	$dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$sql = 'CREATE DATABASE IF NOT EXISTS camagru';
 	$dbh->exec($sql);
 }
-catch (PDOexception $e) {
+catch (PDOexception $e)
+{
 	echo "Connection failed: " . $e->getMessage();
 }
 
