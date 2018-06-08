@@ -2,16 +2,14 @@
 function send_mail($login, $mail)
 {
 	$to = $mail;
-	$subject = 'Camagru | Verification';
+	$subject = 'Confirm your Camagru accout, '.$login;
 	$message = '
 
-  Thanks for signing up to Camagru, '.$login.'!
-  Your account has been created, but in order to access it, you still have to access it via the following link !
+    '.$login.',
 
-  http://localhost:8080/camagru/index.php?email='.$mail.'&hash='.hash('whirlpool', "string for hash funct").'
+    To access your account, just follow to link below:
 
-  ';
-
+    http://localhost:8080/index.php?email='.$mail.'&hash='.hash('whirlpool', 'lasjfdkjshf');
 	$headers = 'From:noreply@camagru.com' . "\r\n";
 	mail($to, $subject, $message, $headers); // Send the email
 }

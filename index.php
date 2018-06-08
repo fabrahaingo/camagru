@@ -9,7 +9,7 @@
 </head>
 <body>
   <?php
-		if (isset($_SESSION['usr_name']))
+		if (isset($_SESSION['usr_name']) && !headers_sent())
 			header('Location: home.php');
 		else if (isset($_GET['action']) && $_GET['action'] == "register")
 			include "register.php";

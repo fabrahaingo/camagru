@@ -4,7 +4,7 @@ require ('config/setup.php');
 
 if (isset($_GET['email']) && isset($_GET['hash']))
 {
-	if ($_GET['hash'] == hash('whirlpool', "little secret"))
+	if ($_GET['hash'] == hash('whirlpool', 'lasjfdkjshf'))
 	{
 		$sql = "SELECT activated FROM users WHERE email = :email"; //STEP 1
 		$act = $dbh->prepare($sql); //STEP 2
@@ -74,7 +74,7 @@ if (isset($_POST['connect']))
 	{
 ?>
 		<div class="error_message">
-		  <span>The user doesn't exist or the credentials are not well spelled</span>
+		  <span>Incorrect username or password</span>
 		</div>
 <?php
 		return;
@@ -95,11 +95,12 @@ if (isset($_POST['connect']))
 		$_SESSION['usr_name'] = implode('', $req);
 ?>
 		<div class="error_message success_message">
-		  <span>Login successfull</span>
+		  <span>Login successful</span>
 		</div>
 <?php
       //If right credentials entered, then redirects to user home space
-		header('Location: home.php');
+		if (!headers_sent())
+			header('Location: home.php');
 	}
 }
 ?>
