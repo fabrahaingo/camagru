@@ -10,17 +10,42 @@ if (isset($_POST['register']))
 	$password1 = !empty($_POST['password1']) ? trim($_POST['password1']) : null;
 	$password2 = !empty($_POST['password2']) ? trim($_POST['password2']) : null;
 
-	if ($password1 != $password2)
+	if (strlen($login) > 20)
 	{
 ?>
 		<div class="error_message">
-		  <span>The passwords do not match, please try again</span>
+		  <span>Maximum username length exceeded</span>
+		</div>
+<?php
+		return ;
+	}
+	else if (preg_match('/[^[:alnum:]_]/', $login))
+	{
+?>
+		<div class="error_message">
+		  <span>Username contains invalid characters. Please try again.</span>
+		</div>
+<?php
+		return ;
+	}
+	else if ($password1 != $password2)
+	{
+?>
+		<div class="error_message">
+		  <span>The passwords do not match. Please try again</span>
 		</div>
 <?php
 		return;
     }
-
-    //TO ADD: Error checking (username characters, password length...)
+	else if (strlen($password1) < 6)
+	{
+?>
+		<div class="error_message">
+		  <span>Password must be at least 6 characters long</span>
+		</div>
+<?php
+		return;
+    }
 
     //Check if the login is already taken
 	$sql = "SELECT COUNT(*) AS num FROM users WHERE login = :login OR email = :email"; //STEP 1
