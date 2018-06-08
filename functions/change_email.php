@@ -58,7 +58,7 @@ if (isset($_POST['new_email']))
 		$req->bindValue(':username', $_SESSION['usr_name']); //STEP 3
 		$req->bindValue(':new_email', $email);
 		$req->execute(); //STEP 4
-		header('Location: '.$_SERVER['REQUEST_URI']);
+		echo '<script type="text/javascript">location.replace("'.$_SERVER['REQUEST_URI'].'");</script>';
 	}
 }
 ?>

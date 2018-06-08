@@ -59,7 +59,7 @@ if (isset($_POST['new_username']))
 		$req->bindValue(':new_username', $username);
 		$req->execute(); //STEP 4
 		$_SESSION['usr_name'] = $username;
-		header('Location: '.$_SERVER['REQUEST_URI']);
+		echo '<script type="text/javascript">location.replace("'.$_SERVER['REQUEST_URI'].'");</script>';
 	}
 }
 ?>
