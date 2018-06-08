@@ -99,8 +99,10 @@ if (isset($_POST['connect']))
 		</div>
 <?php
       //If right credentials entered, then redirects to user home space
-		if (!headers_sent())
-			header('Location: home.php');
+//		if (!headers_sent())
+//			header('Location: home.php');
+		echo '<script type="text/javascript">location.replace("home.php");</script>';
+		exit();
 	}
 }
 ?>

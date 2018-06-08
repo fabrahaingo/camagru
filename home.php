@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php include ("functions/check_if_connected.php"); ?>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" >

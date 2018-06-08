@@ -10,7 +10,9 @@
 <body>
   <?php
 		if (isset($_SESSION['usr_name']) && !headers_sent())
-			header('Location: home.php');
+				header('Location: home.php');
+		else if (isset($_SESSION['usr_name']))
+			echo '<script type="text/javascript">location.replace("home.php");</script>';
 		else if (isset($_GET['action']) && $_GET['action'] == "register")
 			include "register.php";
 		else if (isset($_GET['action']) && $_GET['action'] == "forgot")
