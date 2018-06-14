@@ -1,9 +1,11 @@
 #user_infos {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   min-height: calc(100vh - 170px);
-  background-image: url("https://hdbackgroundspot.com//storage/upload/textures-background/textures-background-10.jpg");
+  background-image: url("https://www.planwallpaper.com/static/images/4433836-space-wallpapers.jpg");
   background-position: center;
   background-size: cover;
   padding-top: 30px;
@@ -12,49 +14,13 @@
   text-align: center;
 }
 
-#user_infos > div {
-  margin-right: auto;
-  margin-left: auto;
-  width: 38%;
-  min-width: 250px;
-  max-width: 500px;
-  margin: 30px auto;
+#user_infos * {
+  border: 1px solid black;
 }
 
-#user_infos h1 {
-  font-family: 'Oswald', sans-serif;
-  letter-spacing: 2px;
-  font-weight: 300;
-  margin: 0 auto;
-  border: 1px white solid;
-  width: 250px;
-}
-
-#user_infos p {
-  width: 90%;
-  margin: 0 auto;
-}
-
-#user_infos input:not([type="checkbox"]) {
-  outline: none;
-  border: 1px solid white;
-  border-radius: 5px;
-  height: 20px;
-  width: 220px;
-  margin: 5px;
-  padding: 5px;
-  background: transparent;
-  color: white;
-  font-size: 14px;
-}
-
-#user_infos ::placeholder {
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  color: white;
-  opacity: 0.8;
-}
-
-#user_infos input:focus {
-  background: rgb(66, 66, 66);
+.option_modify {
+  width: 330px;
+  height: auto;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);
 }

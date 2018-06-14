@@ -1,9 +1,11 @@
 #gallery {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   min-height: calc(100vh - 170px);
-  background-image: url("https://hdbackgroundspot.com//storage/upload/textures-background/textures-background-10.jpg");
+  background-image: url("https://www.planwallpaper.com/static/images/nebula-2710ceb3c3a7c3a5x1694-16x10.jpg");
   background-position: center;
   background-size: cover;
   padding-top: 30px;
@@ -11,11 +13,23 @@
 }
 
 .indiv_gallery {
-  padding: 45px 20px;
-  opacity: 0.9;
+  padding: 35px 20px;
+  text-align: center;
 }
 
 .indiv_gallery > img {
   width: 200px;
   height: auto;
+  opacity: 0.9;
+}
+
+.indiv_gallery textarea {
+  max-width: 250px;
+  min-width: 50px;
+  max-height: 100px;
+  min-height: 50px;
+}
+
+.indiv_gallery div {
+  background: rgba(255, 255, 255, 0.85);
 }

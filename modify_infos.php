@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php require "functions/get_email.php" ?>
 <div id="user_infos">
-  <div>
+  <div class="option_modify">
 
     <!-- USERNAME SECTION -->
     <h1>Username</h1>
@@ -15,7 +15,7 @@
       </form>
     </p>
   </div>
-  <div>
+  <div class="option_modify">
 
     <!-- EMAIL SECTION -->
     <h1>Email</h1>
@@ -29,7 +29,7 @@
       </form>
     </p>
   </div>
-  <div>
+  <div class="option_modify">
 
     <!-- PASSWORD SECTION -->
     <h1>Password</h1>
@@ -43,7 +43,7 @@
         <input type="submit"></input>
       </form>
   </div>
-  <div>
+  <div class="option_modify">
 
     <!-- PREFERENCES SECTION -->
     <h1>Account Preferences</h1>
