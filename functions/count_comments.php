@@ -1,6 +1,10 @@
 <?php
 
-if (isset($_POST['send_comment'])) {
+if (!isset($_SESSION['usr_name'])) {
+  header('Location: ../index.php');
+}
+
+else if (isset($_POST['send_comment']) && isset($_SESSION['usr_name'])) {
   require('../config/database.php');
   $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
   $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

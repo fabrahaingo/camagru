@@ -68,7 +68,7 @@ if (isset($_POST['connect'])) {
     $act->execute(); //STEP 4
     $act = $act->fetch(PDO::FETCH_ASSOC);
 
-    if (!$req) {
+    if (!$act) {
       ?>
       <div class="error_message">
           <span>The user doesn't exist or the credentials are not well spelled</span>
@@ -76,16 +76,15 @@ if (isset($_POST['connect'])) {
         <?php
         return;
     }
-    else if (!implode($act)) {
+    else if (implode($act) == 0) {
       ?>
       <div class="error_message">
           <span>Your account hasn't been activated yet, please click on the link you received via email</span>
-        </div>
-        <?php
-        return;
+      </div>
+      <?php
+      return;
     }
     else {
-
       //Fills the SESSION variable to be used to know which user is logged in
       $_SESSION['usr_name'] = implode('', $req);
       ?>

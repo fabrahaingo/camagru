@@ -11,8 +11,7 @@ function send_mail($login, $mail) {
   http://localhost:8080/camagru/index.php?email='.$mail.'&hash='.hash('sha3-512', "little secret").'
 
   ';
-
-  $headers = 'From:noreply@camagru.com' . "\r\n";
+  $headers = 'From: noreply@camagru.com' . "\r\n";
   mail($to, $subject, $message, $headers); // Send the email
 }
 
