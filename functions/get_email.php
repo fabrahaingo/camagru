@@ -1,5 +1,6 @@
 <?php
 
+$con = mysqli_connect("localhost","root","coucou","camagru");
 
 function ft_get_email($login) {
   require('config/database.php');

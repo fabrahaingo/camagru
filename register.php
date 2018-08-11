@@ -9,10 +9,12 @@
         <div id="register_space">
             <div id="login_form">
                 <form action="index.php" method="POST">
-                    <input type="text" name="login" value="" placeholder="Username" autofocus></input>
-                    <input type="Email" name="email" value="" placeholder="Email"></input>
-                    <input type="password" name="password1" value="" placeholder="Password"></input>
-                    <input type="password" name="password2" value="" placeholder="Confirm password"></input>
+                    <input type="text" name="login" value="" placeholder="Username" autofocus required></input>
+                    <input type="Email" name="email" value="" placeholder="Email" required></input>
+                    <input type="password" name="password1" value="" placeholder="Password"
+                      pattern="(?=^.{8,15}$)(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$" required></input>
+                    <input type="password" name="password2" value="" placeholder="Confirm password"
+                      pattern="(?=^.{8,15}$)(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$" required></input>
                     <div id="return_home">
                         <a href="index.php">Back to home</a>
                     </div>

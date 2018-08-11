@@ -1,6 +1,7 @@
 <?php
 
 require('config/database.php');
+$con = mysqli_connect("localhost","root","coucou","camagru");
 
 if (isset($_POST['new_username'])) {
     $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
@@ -10,15 +11,15 @@ if (isset($_POST['new_username'])) {
 
     //TO ADD: Check user inputs
 
-    $username = !empty($_POST['new_username']) ? trim($_POST['new_username']) : null;
-    $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
+    $username = !empty($_POST['new_username']) ? strip_tags(mysqli_real_escape_string($con, trim($_POST['new_username']))) : null;
+    $password = !empty($_POST['password']) ? mysqli_real_escape_string($con, trim($_POST['password'])) : null;
     $passwordHash = hash('sha3-512', $password);
 
     //Checks if username already taken
-    $sql = "SELECT login FROM camagru.users WHERE login = :username"; //STEP 1
-    $req = $dbh->prepare($sql); //STEP 2
-    $req->bindValue(':username', $username); //STEP 3
-    $req->execute(); //STEP 4
+    $sql = "SELECT login FROM camagru.users WHERE login = :username";
+    $req = $dbh->prepare($sql);
+    $req->bindValue(':username', $username);
+    $req->execute();
     $req = $req->fetch(PDO::FETCH_ASSOC);
 
     if ($req) {
@@ -31,11 +32,11 @@ if (isset($_POST['new_username'])) {
     }
 
     //Checks if right password
-    $sql = "SELECT login FROM camagru.users WHERE login = :username AND password = :password"; //STEP 1
-    $req = $dbh->prepare($sql); //STEP 2
-    $req->bindValue(':username', $_SESSION['usr_name']); //STEP 3
+    $sql = "SELECT login FROM camagru.users WHERE login = :username AND password = :password";
+    $req = $dbh->prepare($sql);
+    $req->bindValue(':username', $_SESSION['usr_name']);
     $req->bindValue(':password', $passwordHash);
-    $req->execute(); //STEP 4
+    $req->execute();
     $req = $req->fetch(PDO::FETCH_ASSOC);
 
     if (!$req) {
@@ -49,11 +50,11 @@ if (isset($_POST['new_username'])) {
     else {
       echo ($req);
       //Updates login if right password is given
-      $sql = "UPDATE camagru.users SET login = :new_username WHERE login = :username"; //STEP 1
-      $req = $dbh->prepare($sql); //STEP 2
-      $req->bindValue(':username', $_SESSION['usr_name']); //STEP 3
+      $sql = "UPDATE camagru.users SET login = :new_username WHERE login = :username";
+      $req = $dbh->prepare($sql);
+      $req->bindValue(':username', $_SESSION['usr_name']);
       $req->bindValue(':new_username', $username);
-      $req->execute(); //STEP 4
+      $req->execute();
       $_SESSION['usr_name'] = $username;
       header('Location: '.$_SERVER['REQUEST_URI']);
     }

@@ -1,6 +1,7 @@
 <?php
 
 require('config/database.php');
+$con = mysqli_connect("localhost","root","coucou","camagru");
 
 if (isset($_POST['new_email'])) {
     $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
@@ -10,8 +11,8 @@ if (isset($_POST['new_email'])) {
 
     //TO ADD: Check user inputs
 
-    $email = !empty($_POST['new_email']) ? trim($_POST['new_email']) : null;
-    $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
+    $email = !empty($_POST['new_email']) ? strip_tags(mysqli_real_escape_string($con, trim($_POST['new_email']))) : null;
+    $password = !empty($_POST['password']) ? mysqli_real_escape_string($con, trim($_POST['password'])) : null;
     $passwordHash = hash('sha3-512', $password);
 
     //Checks if email already used

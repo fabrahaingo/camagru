@@ -6,8 +6,8 @@
     <?php include "./stylesheets/styles.php" ?>
 </head>
 <body>
-    <?php include ("header.php"); ?>
-    <?php include ("gallery.php"); ?>
-    <?php include ("footer.php"); ?>
+    <?php include ("header.php");
+    include ("gallery.php");
+    include ("footer.php"); ?>
 </body>
 </html>
