@@ -7,6 +7,7 @@
 </head>
 <body>
     <?php include ("header.php"); ?>
+    <?php include ("camera_section.php"); ?>
     <?php include ("footer.php"); ?>
 </body>
 </html>
