@@ -25,4 +25,11 @@
     context.drawImage(video, 0, 0, 200, 150);
     photo.setAttribute('src', canvas.toDataURL('image/png'));
   });
+
+  // Send image data to server
+  xhr = new XMLHttpRequest();
+  xhr.addEventListener( 'load', doPhotoLoad );
+  xhr.open( 'POST', 'merge_images.php', true );
+  xhr.setRequestHeader( 'X-Client-ID', uuid );
+  xhr.send( canvas.toDataURL( 'image/png' ) );
 })();
