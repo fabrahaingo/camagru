@@ -19,7 +19,7 @@ else if (isset($_POST['send_comment']) && isset($_POST['usr_name'])) {
   $req = $dbh->prepare($sql);
   $req->bindValue('usr_name', strip_tags(mysqli_real_escape_string($con, $_POST['usr_name'])));
   $req->bindValue('picture', mysqli_real_escape_string($con, $_POST['photo_id']));
-  $req->bindValue('comment_content', strip_tags(mysqli_real_escape_string($con, $_POST['comment'])));
+  $req->bindValue('comment_content', mysqli_real_escape_string($con, strip_tags($_POST['comment'])));
   $req->execute();
 
   // STEP 1 : get user to which belongs the picture

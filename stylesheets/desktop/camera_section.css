@@ -5,11 +5,58 @@
   width: 50%;
 }
 
-#photo {
-  width: 200px;
-  height: 150px;
+#camera_wrapper canvas {
+  width: 400px;
+  height: 300px;
 }
 
-#filters img {
-  width: 80px;
+#photo {
+  width: 400px;
+  height: 300px;
+}
+
+.filter-selector input{
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+.facebook {
+  background: url("../../img/filters/facebook-logo.png");
+}
+.youtube {
+  background-image: url("../../img/filters/youtube-logo.png");
+}
+
+.filter-selector input:active + .filter {
+  opacity: .9;
+}
+
+.filter-selector input:checked + .filter {
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+
+.filter {
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 100px;
+    height: 70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1) grayscale(1) opacity(.8);
+       -moz-filter: brightness(1) grayscale(1) opacity(.8);
+            filter: brightness(1) grayscale(1) opacity(.8);
+}
+
+.filter:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
 }

@@ -3,24 +3,32 @@
 <?php include('functions/merge_images.php'); ?>
 <div id="camera_wrapper">
 
-    <!-- Live camera -->
-    <video id="video" width="200" height="150">Video stream not available</video>
+    <!-- Live camera + canvas to be modified -->
+    <video id="video" width="400" height="300" autoplay>Video stream not available</video>
+    <canvas style="display: none;" id="canvas" width="400" height="300"></canvas>
 
     <!-- Filters -->
     <div id="filters">
-      <button><img src="img/facebook-logo.png" /></button>
-      <button><img src="img/youtube-logo.png" /></button>
+      <div class="filter-selector">
+        <input checked="checked" id="facebook" type="radio" name="selected_filter" value="facebook" />
+        <label class="filter facebook" for="facebook"></label>
+        <input id="youtube" type="radio" name="selected_filter" value="youtube" />
+        <label class="filter youtube"for="youtube"></label>
+      </div>
     </div>
 
     <!-- Capture button -->
-    <a href="#" id="capture"><button onclick="send_data()">Take photo</button></a>
+    <a href="#" id="capture" onclick="getDataURL()">Take photo</a>
 
     <!-- Result of take_photo.js -->
-    <canvas style="display: none;" id="canvas" width="200" height="150"></canvas>
-    <img id="photo" src="http://placekitten.com/g/200/150" alt="Photo of you" />
-    <form method="POST" name="hidden_form">
-      <input name="hidden_data" id="hidden_data" type="hidden" />
+    <label>Your picture</label>
+    <img id="photo" src="http://placekitten.com/g/400/300" alt="Photo of you" />
+
+    <form action="functions/post_pics.php" method="POST">
+      <input type="hidden" name="img" id="sendpic" value="">
+      <input type="submit" value="SAVE" onclick="getDataURL()">
     </form>
+
     <script src="js/take_photo.js"></script>
 
 </div>
