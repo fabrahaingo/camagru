@@ -26,8 +26,8 @@
 .facebook {
   background: url("../../img/filters/facebook-logo.png");
 }
-.youtube {
-  background-image: url("../../img/filters/youtube-logo.png");
+.whatsapp {
+  background-image: url("../../img/filters/whatsapp-logo.png");
 }
 
 .filter-selector input:active + .filter {

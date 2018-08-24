@@ -33,19 +33,19 @@ $req = $dbh->prepare($sql);
 $sql = $req->execute();
 
 // CREATION OF ACTIVATION TABLE
-$sql = "CREATE TABLE IF NOT EXISTS activation (
-	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`user_id` int(11) NOT NULL,
-	`token` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8";
-$req = $dbh->prepare($sql);
-$sql = $req->execute();
+// $sql = "CREATE TABLE IF NOT EXISTS activation (
+// 	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+// 	`user_id` int(11) NOT NULL,
+// 	`token` varchar(128) NOT NULL
+// ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
+// $req = $dbh->prepare($sql);
+// $sql = $req->execute();
 
 // CREATION OF COMMENTS TABLE
 $sql = "CREATE TABLE IF NOT EXISTS comments (
 	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`user` varchar(50) NOT NULL,
-	`picture_id` int(11) NOT NULL,
+	`picture_id` varchar(50) NOT NULL,
 	`comment` text NOT NULL,
 	`creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
@@ -56,7 +56,7 @@ $sql = $req->execute();
 $sql = "CREATE TABLE IF NOT EXISTS likes (
 	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`user` varchar(50) NOT NULL,
-	`picture_id` int(11) NOT NULL
+	`picture_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 $req = $dbh->prepare($sql);
 $sql = $req->execute();
@@ -65,8 +65,7 @@ $sql = $req->execute();
 $sql = "CREATE TABLE IF NOT EXISTS pictures (
 	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`user` varchar (50) NOT NULL,
-	`picture_id` int(11) NOT NULL,
-	`creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+	`picture_id` varchar(50) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 $req = $dbh->prepare($sql);
 $sql = $req->execute();

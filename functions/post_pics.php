@@ -12,15 +12,14 @@ $dbh->exec($sql);
 function merge_images($dest_name, $src_name) {
   $dest = imagecreatefrompng($dest_name);
   $src = imagecreatefrompng($src_name);
-
+  // Settings about transparency
   imagealphablending($dest, false);
   imagesavealpha($dest, true);
-
+  // Merging pictures
   imagecopymerge($dest, $src, 0, 0, 0, 0, 400, 300, 100);
-
-  header('Content-Type: image/png');
+  // Replacing existing picture
   imagepng($dest, $dest_name);
-
+  // Destroying copies
   imagedestroy($dest);
   imagedestroy($src);
   return;
@@ -31,18 +30,18 @@ if (isset($_POST['img'])) {
   $img = str_replace('data:image/png;base64,', '', $img);
   $img = str_replace(' ', '+', $img);
   $data = base64_decode($img);
-  $file = '../img/image-'.time().'.png';
-  file_put_contents($file, $data);
+  $file = 'image-'.time().'.png';
+  file_put_contents("../img/". $file, $data);
 
-  merge_images($file, "../img/filters/facebook-logo.png");
+  merge_images("../img/". $file, "../img/filters/" . $_POST['selected_filter']);
 
-  $picture_id = 'image-'.time().'.png';
+  $picture_id = $file;
   $user = $_SESSION['usr_name'];
-  // $sql = "INSERT INTO camagru.pictures (user, picture_id) VALUES (:user, :picture_id)";
-  // $req = $dbh->prepare($sql);
-  // $req->bindValue('user', strip_tags(mysqli_real_escape_string($con, $user)));
-  // $req->bindValue('picture_id', mysqli_real_escape_string($con, $picture_id));
-  // $req->execute();
+  $sql = "INSERT INTO camagru.pictures (user, picture_id) VALUES (:user, :picture_id)";
+  $req = $dbh->prepare($sql);
+  $req->bindValue('user', strip_tags(mysqli_real_escape_string($con, $user)));
+  $req->bindValue('picture_id', mysqli_real_escape_string($con, $picture_id));
+  $req->execute();
 
   header('Location: ../new_pic.php');
 }
