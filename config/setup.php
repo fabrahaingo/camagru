@@ -32,15 +32,6 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
 $req = $dbh->prepare($sql);
 $sql = $req->execute();
 
-// CREATION OF ACTIVATION TABLE
-// $sql = "CREATE TABLE IF NOT EXISTS activation (
-// 	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-// 	`user_id` int(11) NOT NULL,
-// 	`token` varchar(128) NOT NULL
-// ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
-// $req = $dbh->prepare($sql);
-// $sql = $req->execute();
-
 // CREATION OF COMMENTS TABLE
 $sql = "CREATE TABLE IF NOT EXISTS comments (
 	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,

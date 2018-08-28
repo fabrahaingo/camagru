@@ -26,7 +26,11 @@ function merge_images($dest_name, $src_name) {
 }
 
 if (isset($_POST['img'])) {
-  $img = $_POST['img'];
+  // Checks if the image sent is empty or not
+  if (($img = $_POST['img']) === "") {
+    header("Location: ../new_pic.php");
+    return;
+  }
   $img = str_replace('data:image/png;base64,', '', $img);
   $img = str_replace(' ', '+', $img);
   $data = base64_decode($img);

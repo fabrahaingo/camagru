@@ -33,3 +33,8 @@
 .indiv_gallery div {
   background: rgba(255, 255, 255, 0.85);
 }
+
+#comments_section {
+  max-height: 200px;
+  overflow: scroll;
+}

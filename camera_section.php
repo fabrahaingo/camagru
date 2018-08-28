@@ -3,11 +3,17 @@
 <div id="camera_wrapper">
 
     <!-- Live camera + canvas to be modified -->
-    <video id="video" width="400" height="300" autoplay>Video stream not available</video>
+    <div id="coucoutest">
+      <video id="video" width="400" height="300" autoplay></video>
+      <form id="upload-form" style="display: none;">
+        Select an image to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+      </form>
+    </div>
     <canvas style="display: none;" id="canvas" width="400" height="300"></canvas>
 
     <!-- Filters -->
-    <form action="functions/post_pics.php" method="POST">
+    <form action="functions/post_pics.php" id="final_submit" method="POST">
       <div id="filters">
         <div class="filter-selector">
           <input checked="checked" id="facebook" type="radio" name="selected_filter" value="facebook-logo.png" />
@@ -25,7 +31,7 @@
       <img id="photo" src="http://placekitten.com/g/400/300" alt="Photo of you" />
 
       <input type="hidden" name="img" id="sendpic" value="">
-      <input type="submit" value="SAVE" onclick="getDataURL()">
+      <input id="save_picture" type="submit" value="SAVE" onclick="getDataURL()">
     </form>
 
     <script src="js/take_photo.js"></script>
