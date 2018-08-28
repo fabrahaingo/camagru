@@ -55,8 +55,8 @@ $sql = $req->execute();
 // CREATION OF PICTURES TABLE
 $sql = "CREATE TABLE IF NOT EXISTS pictures (
 	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`user` varchar (50) NOT NULL,
-	`picture_id` varchar(50) NOT NULL,
+	`user` varchar(50) NOT NULL,
+	`picture_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 $req = $dbh->prepare($sql);
 $sql = $req->execute();

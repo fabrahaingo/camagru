@@ -64,7 +64,6 @@ function handleFiles(e) {
   if (files[0].type !== "image/png") {
     context.clearRect(0, 0, 400, 300);
     document.getElementById("fileToUpload").value = "";
-    alert('coucou');
     return false;
   }
   if (files[0].size > 1000000) {

@@ -7,7 +7,7 @@ $con = mysqli_connect("localhost","root","coucou","camagru");
 // ACCOUNT ACTIVATION
 
 if (isset($_GET['email']) && isset($_GET['hash'])) {
-  if ($_GET['hash'] == hash('sha3-512', "little secret")) {
+  if ($_GET['hash'] == hash('sha3-512', "little".$_GET['email']."secret")) {
     $sql = "SELECT activated FROM users WHERE email = :email";
     $req = $dbh->prepare($sql);
     $req->bindValue(':email', mysqli_real_escape_string($con, $_GET['email']));

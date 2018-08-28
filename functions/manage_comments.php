@@ -28,6 +28,11 @@ function display_comments($picture_id) {
   return;
 }
 
+if (isset($_POST['sent_comment']) && $_POST['sent_comment'] == "") {
+  header('Location: ../index.php');
+  return;
+}
+
 if (isset($_POST['sent_comment']) && isset($_POST['usr_name'])) {
   require('../config/database.php');
   require('mail.php');

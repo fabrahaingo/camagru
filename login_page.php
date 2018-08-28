@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <div id="general_login">
-    <a href="index.php">
-        <div id="empty_header">
-            <span>Camagru</span>
-        </div>
-    </a>
+    <div id="empty_header">
+        <a href="index.php"><span>Camagru</span></a>
+    </div>
     <div id="login_div">
         <div id="login_space">
             <div id="login_form">
