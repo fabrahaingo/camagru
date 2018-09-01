@@ -22,7 +22,7 @@ else {
   $i = $_GET['page'];
 }
 
-echo "<table>";
+echo "<table id=\"main_table\">";
 echo "<tr><th>Picture</th><th>Likes</th><th>Comments</th></tr>";
 
 // If number of pictures is > 5

@@ -4,6 +4,11 @@ $target_file = $target_dir . "image-" . time();
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
 
+if ($imageFileType == "") {
+  header('Location: ../new_pic.php');
+  return;
+}
+
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -23,7 +28,7 @@ if (file_exists($target_file)) {
 }
 
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["fileToUpload"]["size"] > 100000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
