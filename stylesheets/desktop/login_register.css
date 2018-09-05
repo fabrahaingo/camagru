@@ -16,7 +16,6 @@
     letter-spacing: 6px;
     font-family: 'Oswald', sans-serif;
     color: white;
-    background: rgba(0, 0, 0, 0.5);
 }
 
 #empty_header a {
@@ -40,14 +39,14 @@
 
 /* ===== LOOK LOGIN BOX ===== */
 #login_space {
-    width: 330px;
+    width: 300px;
     height: auto;
     overflow: hidden;
 }
 
 /* ===== LOOK REGISTER BOX ===== */
 #register_space {
-    width: 330px;
+    width: 300px;
     height: auto;
     overflow: hidden;
 }
@@ -98,7 +97,6 @@
     font-family: 'Oswald', sans-serif;
     letter-spacing: 3px;
     background: rgb(232, 27, 85);
-    filter: brightness(100%);
     border: none;
     transition: filter 0.3s;
 

@@ -4,42 +4,29 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 70px;
-  background: black;
-  color: whitesmoke;
+  padding: 0px 40px;
+  background-color: black;
 }
 
 #header_name {
-  margin-bottom: 5px;
-  padding-left: 5%;
-  font-size: 30px;
   font-family: 'Oswald', sans-serif;
-  font-weight: 300;
-  letter-spacing: 3px;
-}
-
-#header_name * {
-  text-decoration: none;
-  color: whitesmoke;
+  font-size: 26px;
 }
 
 #header_menu {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  width: 63%;
 }
 
-#header_menu > div {
-  margin-right: 5%;
-}
-
-#header_menu * {
+header a {
+  padding: 10px;
+  color: white;
   text-decoration: none;
-  color: whitesmoke;
-  font-weight: 400;
-  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
 }
 
-#header_menu *:hover {
-  text-decoration: underline;
+@media (max-width: 550px) {
+  #header_name {
+    display: none;
+  }
 }

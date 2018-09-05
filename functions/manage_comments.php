@@ -28,7 +28,7 @@ function display_comments($picture_id) {
   return;
 }
 
-if (isset($_POST['sent_comment']) && $_POST['sent_comment'] == "") {
+if (isset($_POST['sent_comment']) && trim($_POST['new_comment']) === "") {
   header('Location: ../index.php');
   return;
 }

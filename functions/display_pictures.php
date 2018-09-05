@@ -22,8 +22,7 @@ else {
   $i = $_GET['page'];
 }
 
-echo "<table id=\"main_table\">";
-echo "<tr><th>Picture</th><th>Likes</th><th>Comments</th></tr>";
+echo "<div id=\"main_div\">";
 
 // If number of pictures is > 5
 if ($count_start > 5) {
@@ -31,9 +30,9 @@ if ($count_start > 5) {
   $req = mysqli_query($con, $sql) or die('There was the problem with your request');
   $count = mysqli_num_rows($req);
   while ($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
-    echo "<tr><td>";
+    echo "<div id=\"indiv_image\"><div>";
     echo "<img src=\"img/" . $row['picture_id'] . "\" alt=\"Picture of " . $row['user'] . "\" />";
-    echo "</td><td>";
+    echo "</div><div><div>";
     echo "Likes: ";
     display_likes($row['picture_id']);
     echo "\n";
@@ -45,7 +44,7 @@ if ($count_start > 5) {
           echo "<input type=\"submit\" name=\"unlike\" value=\"Unlike\"></input>";
         echo "</form>";
       }
-    echo "</td><td>";
+    echo "</div><div>";
     if (isset($_SESSION['usr_name'])) {
     echo "Comments:";
 
@@ -59,7 +58,7 @@ if ($count_start > 5) {
     echo "\n";
     echo "<div id=\"comments_section\">";
     display_comments($row['picture_id']);
-    echo "</td></tr>";
+    echo "</div></div></div>";
   };
 }
 
@@ -71,9 +70,9 @@ $count = mysqli_num_rows($req);
 if ($count <= 5) {
   while ($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
   $i = 1;
-  echo "<tr><td>";
+  echo "<div id=\"indiv_image\"><div>";
   echo "<img src=\"img/" . $row['picture_id'] . "\" alt=\"Picture of " . $row['user'] . "\" />";
-  echo "</td><td>";
+  echo "</div><div id=\"pic_infos\"><div>";
   echo "Likes: ";
     display_likes($row['picture_id']);
     echo "\n";
@@ -85,7 +84,7 @@ if ($count <= 5) {
         echo "<input type=\"submit\" name=\"unlike\" value=\"Unlike\"></input>";
       echo "</form>";
     }
-  echo "</td><td>";
+  echo "</div><div>";
   echo "Comments:";
     if (isset($_SESSION['usr_name'])) {
       echo "<form method=\"POST\" action=\"functions/manage_comments.php\">";
@@ -98,11 +97,11 @@ if ($count <= 5) {
     echo "\n";
     echo "<div id=\"comments_section\">";
     display_comments($row['picture_id']);
-  echo "</td></tr>";
+  echo "</div></div></div>";
 };
 }
 
-echo "</table>";
+echo "</div>";
 if (isset($_SESSION['usr_name'])) {
   if ($count_start > $i * 5)
   echo "<a id=\"show_more\" href=\"home.php?page=" . ($i + 1) . "\">Show more</a>";

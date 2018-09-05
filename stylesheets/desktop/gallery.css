@@ -1,54 +1,27 @@
 #gallery {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: calc(100vh - 170px);
-  background-image: url("https://www.planwallpaper.com/static/images/nebula-2710ceb3c3a7c3a5x1694-16x10.jpg");
+  min-height: calc(100vh - 40px);
+  background-image: url("https://i.pinimg.com/originals/e4/9c/22/e49c22dd6b304202957c66aa71f4b2e7.jpg");
   background-position: center;
   background-size: cover;
+  color: white;
+}
+
+#main_div {
+  min-height: calc(100vh - 70px);
   padding-top: 30px;
-  padding-bottom: 30px;
 }
 
-.indiv_gallery {
-  padding: 35px 20px;
-  text-align: center;
+#main_div img {
+  width: 300px;
 }
 
-.indiv_gallery > img {
-  width: 200px;
-  height: auto;
-  opacity: 0.9;
+#indiv_image {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.indiv_gallery textarea {
-  max-width: 250px;
-  min-width: 50px;
-  max-height: 100px;
-  min-height: 50px;
-}
-
-.indiv_gallery div {
-  background: rgba(255, 255, 255, 0.85);
-}
-
-#comments_section {
-  max-height: 250px;
-  overflow: scroll;
-}
-
-#show_more {
-  color: white;
-  font-size: 30px;
+#pic_infos {
   padding: 10px;
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-}
-
-#main_table {
-  color: white;
-  font-size: 16px;
 }

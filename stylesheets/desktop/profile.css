@@ -3,24 +3,61 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
   min-height: calc(100vh - 170px);
   background-image: url("https://www.planwallpaper.com/static/images/4433836-space-wallpapers.jpg");
   background-position: center;
   background-size: cover;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  text-align: justify;
   color: white;
-  text-align: center;
-}
-
-#user_infos * {
-  border: 1px solid black;
 }
 
 .option_modify {
-  width: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: auto;
+  width: 280px;
+  padding-top: 100px;
+  margin: 30px;
+  padding: 10px;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
+  font-size: 15px;
+}
+
+.option_modify input {
+  margin: 6px 40px;
+  padding: 13px;
+  border: none;
+  outline: none;
+  width: 240px;
+}
+
+.option_modify input[type="submit"]{
+  cursor:pointer;
+  width: 267px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 3px;
+  font-size: 13px;
+  background: rgb(232, 27, 85);
+  color: white;
+  transition: filter 0.3s;
+}
+
+.option_modify input[type="submit"]:hover{
+  filter: brightness(115%);
+  transition: filter 0.3s;
+}
+
+.option_modify input[type="checkbox"]{
+  width: auto;
+}
+
+.option_modify p {
+  padding: 10px;
+}
+
+.option_modify ::placeholder {
+  font-size: 13px;
 }

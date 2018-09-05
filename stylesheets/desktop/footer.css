@@ -1,9 +1,13 @@
 footer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  width: 80%;
   height: 40px;
-  color: whitesmoke;
-  background: black;
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: rgba(5, 5, 5, 1);
+  color: white;
+  bottom: 0;
 }

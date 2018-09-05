@@ -3,7 +3,6 @@
   <link rel="stylesheet" type="text/css" href="./stylesheets/desktop/general.css">
   <link rel="stylesheet" type="text/css" href="./stylesheets/desktop/login_register.css">
   <link rel="stylesheet" type="text/css" href="./stylesheets/desktop/header.css">
-  <link rel="stylesheet" type="text/css" href="./stylesheets/desktop/home.css">
   <link rel="stylesheet" type="text/css" href="./stylesheets/desktop/gallery.css">
   <link rel="stylesheet" type="text/css" href="./stylesheets/desktop/profile.css">
   <link rel="stylesheet" type="text/css" href="./stylesheets/desktop/footer.css">
