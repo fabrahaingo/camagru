@@ -1,7 +1,6 @@
 <?php
 
 require('config/database.php');
-$con = mysqli_connect("localhost","root","coucou","camagru");
 
 $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
 $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -10,12 +9,15 @@ $dbh->exec($sql);
 
 // Count all pictures in database
 $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . $_SESSION['usr_name'] . '"';
-$req = mysqli_query($con, $sql);
+$req = $dbh->prepare($sql);
+$req->execute();
+// Gets the number of rows found
+$count_start = $req->fetch(PDO::FETCH_ASSOC);
+$count_start = array_values($count_start)[0];
 if (!$req)
   return;
-if (!($count_start = mysqli_num_rows($req))) {
+else if (!($count_start))
   return;
-}
 
 if (!isset($_GET['page'])) {
   $i = 1;
@@ -30,9 +32,9 @@ echo "<tr><th>My Pictures</th></tr>";
 // If number of pictures is > 5
 if ($count_start > 5) {
   $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . $_SESSION['usr_name'] . "\" LIMIT " . 5 * $i;
-  $req = mysqli_query($con, $sql) or die('There was the problem with your request');
-  $count = mysqli_num_rows($req);
-  while ($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
+  $req = $dbh->prepare($sql);
+  $req->execute();
+  while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr><td>";
     echo "<img src=\"img/" . $row['picture_id'] . "\" alt=\"Picture of " . $row['user'] . "\" />";
     echo "</td><td>";
@@ -50,12 +52,18 @@ if ($count_start > 5) {
 }
 
 $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . $_SESSION['usr_name'] . "\"";
-$req = mysqli_query($con, $sql) or die('There was the problem with your request');
-$count = mysqli_num_rows($req);
+$req = $dbh->prepare($sql);
+$req->execute();
+// Gets the number of rows found
+$count = $req->fetch(PDO::FETCH_ASSOC);
+$count = array_values($count)[0];
 
 // If number of pictures is <= 5
 if ($count <= 5) {
-  while ($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
+  $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . $_SESSION['usr_name'] . "\"";
+  $req = $dbh->prepare($sql);
+  $req->execute();
+  while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
     $i = 1;
     echo "<tr><td>";
     echo "<img src=\"img/" . $row['picture_id'] . "\" alt=\"Picture of " . $row['user'] . "\" />";

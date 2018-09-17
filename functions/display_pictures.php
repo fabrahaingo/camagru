@@ -3,7 +3,6 @@
 require('config/database.php');
 include('functions/manage_likes.php');
 include('functions/manage_comments.php');
-$con = mysqli_connect("localhost","root","coucou","camagru");
 
 $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
 $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -11,9 +10,12 @@ $sql = 'CREATE DATABASE IF NOT EXISTS camagru';
 $dbh->exec($sql);
 
 // Count all pictures in database
-$sql = 'SELECT * FROM camagru.pictures';
-$req = mysqli_query($con, $sql) or die('There was the problem with your request');
-$count_start = mysqli_num_rows($req);
+$sql = "SELECT * FROM camagru.pictures";
+$req = $dbh->prepare($sql);
+$req->execute();
+// Gets the number of rows found
+$count_start = $req->fetch(PDO::FETCH_ASSOC);
+$count_start = array_values($count_start)[0];
 
 if (!isset($_GET['page'])) {
   $i = 1;
@@ -27,9 +29,10 @@ echo "<div id=\"main_div\">";
 // If number of pictures is > 5
 if ($count_start > 5) {
   $sql = 'SELECT * FROM camagru.pictures LIMIT ' . 5 * $i;
-  $req = mysqli_query($con, $sql) or die('There was the problem with your request');
-  $count = mysqli_num_rows($req);
-  while ($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
+  $req = $dbh->prepare($sql);
+  $req->execute();
+
+  while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
     echo "<div id=\"indiv_image\"><div>";
     echo "<img src=\"img/" . $row['picture_id'] . "\" alt=\"Picture of " . $row['user'] . "\" />";
     echo "</div><div><div>";
@@ -62,13 +65,20 @@ if ($count_start > 5) {
   };
 }
 
-$sql = 'SELECT * FROM camagru.pictures';
-$req = mysqli_query($con, $sql) or die('There was the problem with your request');
-$count = mysqli_num_rows($req);
+// Count all pictures in database
+$sql = "SELECT * FROM camagru.pictures";
+$req = $dbh->prepare($sql);
+$req->execute();
+// Gets the number of rows found
+$count = $req->fetch(PDO::FETCH_ASSOC);
+$count = array_values($count)[0];
 
 // If number of pictures is <= 5
 if ($count <= 5) {
-  while ($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
+  $sql = "SELECT * FROM camagru.pictures";
+  $req = $dbh->prepare($sql);
+  $req->execute();
+  while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
   $i = 1;
   echo "<div id=\"indiv_image\"><div>";
   echo "<img src=\"img/" . $row['picture_id'] . "\" alt=\"Picture of " . $row['user'] . "\" />";
