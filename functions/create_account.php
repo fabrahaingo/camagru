@@ -3,14 +3,13 @@
 require ('config/setup.php');
 require ('functions/mail.php');
 require_once ('functions/secure_password.php');
-$con = mysqli_connect("localhost","root","coucou","camagru");
 
 if(isset($_POST['register'])) {
 
-    $login = !empty($_POST['login']) ? strip_tags(mysqli_real_escape_string($con, trim($_POST['login']))) : null;
-    $email = !empty($_POST['email']) ? strip_tags(mysqli_real_escape_string($con, trim($_POST['email']))) : null;
-    $password1 = !empty($_POST['password1']) ? mysqli_real_escape_string($con, trim($_POST['password1'])) : null;
-    $password2 = !empty($_POST['password2']) ? mysqli_real_escape_string($con, trim($_POST['password2'])) : null;
+    $login = !empty($_POST['login']) ? strip_tags(trim($_POST['login'])) : null;
+    $email = !empty($_POST['email']) ? strip_tags(trim($_POST['email'])) : null;
+    $password1 = !empty($_POST['password1']) ? trim($_POST['password1']) : null;
+    $password2 = !empty($_POST['password2']) ? trim($_POST['password2']) : null;
 
     if ($password1 != $password2) { ?>
       <div class="error_message">
@@ -19,7 +18,7 @@ if(isset($_POST['register'])) {
       <?php return;
     }
 
-    // Check if the login is already taken
+    // Check if login is already taken
     $sql = "SELECT COUNT(*) AS num FROM users WHERE login = :login OR email = :email";
     $req = $dbh->prepare($sql);
     $req->bindValue(':login', $login);

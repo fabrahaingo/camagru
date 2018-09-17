@@ -1,7 +1,6 @@
 <?php
 
 require('config/database.php');
-$con = mysqli_connect("localhost","root","coucou","camagru");
 
 if (isset($_POST['new_username'])) {
     $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
@@ -11,8 +10,8 @@ if (isset($_POST['new_username'])) {
 
     //TO ADD: Check user inputs
 
-    $username = !empty($_POST['new_username']) ? strip_tags(mysqli_real_escape_string($con, trim($_POST['new_username']))) : null;
-    $password = !empty($_POST['password']) ? mysqli_real_escape_string($con, trim($_POST['password'])) : null;
+    $username = !empty($_POST['new_username']) ? strip_tags(trim($_POST['new_username'])) : null;
+    $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
     $passwordHash = hash('sha3-512', $password);
 
     //Checks if username already taken

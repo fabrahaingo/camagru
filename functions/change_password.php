@@ -2,7 +2,6 @@
 
 require ('config/database.php');
 require_once ('functions/secure_password.php');
-$con = mysqli_connect("localhost","root","coucou","camagru");
 
 if (isset($_POST['new_password'])) {
     $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
@@ -12,9 +11,9 @@ if (isset($_POST['new_password'])) {
 
     //TO ADD: Check user inputs
 
-    $new_password = !empty($_POST['new_password']) ? mysqli_real_escape_string($con, trim($_POST['new_password'])) : null;
-    $new_password2 = !empty($_POST['new_password2']) ? mysqli_real_escape_string($con, trim($_POST['new_password2'])) : null;
-    $password = !empty($_POST['password']) ? mysqli_real_escape_string($con, trim($_POST['password'])) : null;
+    $new_password = !empty($_POST['new_password']) ? trim($_POST['new_password']) : null;
+    $new_password2 = !empty($_POST['new_password2']) ? trim($_POST['new_password2']) : null;
+    $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
     $passwordHash = hash('sha3-512', $password);
     $new_passwordHash = hash('sha3-512', $new_password);
 

@@ -1,7 +1,6 @@
 <?php
 
 require('config/database.php');
-$con = mysqli_connect("localhost","root","coucou","camagru");
 
 if (isset($_POST['notif_status'])) {
     $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);

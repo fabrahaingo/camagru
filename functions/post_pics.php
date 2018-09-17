@@ -2,7 +2,6 @@
 
 session_start();
 require_once '../config/database.php';
-$con = mysqli_connect("localhost","root","coucou","camagru");
 
 $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
 $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -43,8 +42,8 @@ if (isset($_POST['img'])) {
   $user = $_SESSION['usr_name'];
   $sql = "INSERT INTO camagru.pictures (user, picture_id) VALUES (:user, :picture_id)";
   $req = $dbh->prepare($sql);
-  $req->bindValue('user', strip_tags(mysqli_real_escape_string($con, $user)));
-  $req->bindValue('picture_id', mysqli_real_escape_string($con, $picture_id));
+  $req->bindValue('user', strip_tags($user));
+  $req->bindValue('picture_id', $picture_id);
   $req->execute();
 
   header('Location: ../new_pic.php');
