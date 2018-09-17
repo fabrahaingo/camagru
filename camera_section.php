@@ -34,10 +34,9 @@
       <input id="save_picture" type="submit" value="SAVE" onclick="getDataURL()">
     </form>
 
-    <div id="mypictures">
-      <?php include ("functions/display_mypictures.php"); ?>
-    </div>
-
     <script src="js/take_photo.js"></script>
 
+</div>
+<div id="mypictures">
+  <?php include ("functions/display_mypictures.php"); ?>
 </div>
