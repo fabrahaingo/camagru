@@ -199,7 +199,7 @@ if (isset($_POST['send_link_password'])) {
   // If no user has this email
   else { ?>
     <div class="error_message">
-      <span>No user with this enail was registered before</span>
+      <span>No user with this email was registered before</span>
     </div>
   <?php }
 }

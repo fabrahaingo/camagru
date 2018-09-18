@@ -17,11 +17,33 @@
 
 #indiv_image {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px 0px;
 }
 
 #pic_infos {
   padding: 10px;
+}
+
+#comments_section {
+  max-height: 200px;
+  width: 300px;
+  text-align: justify;
+  overflow: auto;
+}
+
+#show_more {
+  font-size: 20px;
+  color: white;
+  padding: 20px;
+}
+
+#indiv_image input[type="submit"] {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
 }

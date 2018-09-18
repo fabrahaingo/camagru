@@ -22,7 +22,7 @@
     <p>If you wish to change it, please write your new email adress and confirm with your password:</p>
     <?php include "./functions/change_email.php"; ?>
     <form action="profile.php" method="POST">
-      <input type="email" name="new_email" value="" placeholder="New email adress"></input><br>
+      <input type="email" name="new_email" value="" placeholder="New email adress" required></input><br>
       <input type="password" name="password" value="" placeholder="Password"></input><br>
       <input type="submit" value="CHANGE EMAIL"></input>
     </form>
@@ -44,13 +44,13 @@
 
     <!-- PREFERENCES SECTION -->
     <strong>Account Preferences</strong>
-    <em>Current mail notifications status: </em>
     <p>If you wish to change it, please check (or uncheck) accordingly the checkbox below:</p>
       <?php include "./functions/change_notification.php"; ?>
-      <form action="profile.php" method="POST">
-        <input type="checkbox" id="check_notif" name="notif"></input>
-        <label for="check_notif">Do you wish to receive emails for each comment ?</label>
-        <input type="submit" name="notif_status" value="CHANGE NOTIFICATIONS"></input>
+      <form id="checkbox_form" action="profile.php" method="POST">
+        <label for="check_notif" name='notif'>
+        <input type="checkbox" id="check_notif" name="notif"></input>Do you want email notifs ?</label>
+
+        <input type="submit" id="notif_status" name="notif_status" value="CHANGE NOTIFICATIONS"></input>
       </form>
   </div>
 </div>

@@ -13,7 +13,7 @@ function display_comments($picture_id) {
   $req->execute();
   while ($result = $req->fetch(PDO::FETCH_ASSOC)) {
     echo "<div>";
-      echo "<span style=\"text-decoration: underline; font-weight: 500;\">By ";
+      echo "<span style=\"text-decoration: underline; font-weight: 500;\">";
         echo strip_tags($result['user']);
         echo " on the ";
         echo $result['creation_date'];

@@ -8,7 +8,7 @@ if (isset($_POST['notif_status'])) {
     $sql = 'CREATE DATABASE IF NOT EXISTS camagru';
     $dbh->exec($sql);
 
-    if ($_POST['notif']) {
+    if (isset($_POST['notif'])) {
       //Updates comment_mail to 1
       $sql = "UPDATE camagru.users SET comment_mail = 1 WHERE login = :username";
       $req = $dbh->prepare($sql);
