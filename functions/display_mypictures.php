@@ -9,7 +9,7 @@ $sql = "CREATE DATABASE IF NOT EXISTS camagru";
 $dbh->exec($sql);
 
 // Count all pictures in database
-$sql = 'SELECT COUNT(*) FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name']) . '"';
+$sql = 'SELECT COUNT(*) FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name'], $dbh) . '"';
 $req = $dbh->prepare($sql);
 $req->execute();
 // Gets the number of rows found
@@ -34,7 +34,7 @@ echo "<tr><th>My Pictures</th></tr>";
 
 // If number of pictures is > 5
 if ($count_start > 5) {
-  $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name']) . "\" LIMIT " . 5 * $i;
+  $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name'], $dbh) . "\" LIMIT " . 5 * $i;
   $req = $dbh->prepare($sql);
   $req->execute();
   while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -46,7 +46,7 @@ if ($count_start > 5) {
     if (isset($_SESSION['usr_name'])) {
       echo "<form method=\"POST\" action=\"functions/delete_picture.php\">";
           echo "<input type=\"hidden\" name=\"picture_id\" value=\"" . $row['picture_id'] . "\"></input>";
-          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name']) . "\"></input>";
+          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name'], $dbh) . "\"></input>";
           echo "<input type=\"submit\" name=\"like\" value=\"Yes I do\"></input>";
         echo "</form>";
       }
@@ -54,7 +54,7 @@ if ($count_start > 5) {
   };
 }
 
-$sql = 'SELECT COUNT(*) FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name']) . "\"";
+$sql = 'SELECT COUNT(*) FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name'], $dbh) . "\"";
 $req = $dbh->prepare($sql);
 $req->execute();
 // Gets the number of rows found
@@ -65,7 +65,7 @@ if ($count) {
 
 // If number of pictures is <= 5
 if ($count <= 5) {
-  $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name']) . "\"";
+  $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name'], $dbh) . "\"";
   $req = $dbh->prepare($sql);
   $req->execute();
   while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -78,7 +78,7 @@ if ($count <= 5) {
     if (isset($_SESSION['usr_name'])) {
       echo "<form method=\"POST\" action=\"functions/delete_picture.php\">";
           echo "<input type=\"hidden\" name=\"picture_id\" value=\"" . $row['picture_id'] . "\"></input>";
-          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name']) . "\"></input>";
+          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name'], $dbh) . "\"></input>";
           echo "<input type=\"submit\" name=\"like\" value=\"Yes I do\"></input>";
         echo "</form>";
       }

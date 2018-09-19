@@ -44,7 +44,7 @@ if ($count_start > 5) {
     if (isset($_SESSION['usr_name'])) {
       echo "<form method=\"POST\" action=\"functions/manage_likes.php\">";
           echo "<input type=\"hidden\" name=\"picture_id\" value=\"" . $row['picture_id'] . "\"></input>";
-          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name']) . "\"></input>";
+          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name'], $dbh) . "\"></input>";
           echo "<input type=\"submit\" name=\"like\" value=\"Like\"></input>";
           echo "<input type=\"submit\" name=\"unlike\" value=\"Unlike\"></input>";
         echo "</form>";
@@ -55,7 +55,7 @@ if ($count_start > 5) {
 
       echo "<form method=\"POST\" action=\"functions/manage_comments.php\">";
           echo "<input type=\"hidden\" name=\"picture_id\" value=\"" . $row['picture_id'] . "\"></input>";
-          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name']) . "\"></input>";
+          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name'], $dbh) . "\"></input>";
           echo "<input type=\"text\" name=\"new_comment\" placeholder=\"Enter your comment here\" required></input>";
           echo "<input type=\"submit\" name=\"sent_comment\" value=\"Submit comment\"></input>";
         echo "</form>";
@@ -93,7 +93,7 @@ if ($count <= 5) {
     if (isset($_SESSION['usr_name'])) {
       echo "<form method=\"POST\" action=\"functions/manage_likes.php\">";
         echo "<input type=\"hidden\" name=\"picture_id\" value=\"" . $row['picture_id'] . "\"></input>";
-        echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name']) . "\"></input>";
+        echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name'], $dbh) . "\"></input>";
         echo "<input type=\"submit\" name=\"like\" value=\"Like\"></input>";
         echo "<input type=\"submit\" name=\"unlike\" value=\"Unlike\"></input>";
       echo "</form>";
@@ -103,7 +103,7 @@ if ($count <= 5) {
     if (isset($_SESSION['usr_name'])) {
       echo "<form method=\"POST\" action=\"functions/manage_comments.php\">";
         echo "<input type=\"hidden\" name=\"picture_id\" value=\"" . $row['picture_id'] . "\"></input>";
-        echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name']) . "\"></input>";
+        echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name'], $dbh) . "\"></input>";
         echo "<input type=\"text\" name=\"new_comment\" placeholder=\"Enter your comment here\"></input>";
         echo "<input type=\"submit\" name=\"sent_comment\" value=\"Submit comment\"></input>";
       echo "</form>";

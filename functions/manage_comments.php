@@ -1,5 +1,7 @@
 <?php
 
+require('get_username.php');
+
 function display_comments($picture_id) {
   require('config/database.php');
   $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
@@ -14,7 +16,7 @@ function display_comments($picture_id) {
   while ($result = $req->fetch(PDO::FETCH_ASSOC)) {
     echo "<div>";
       echo "<span style=\"text-decoration: underline; font-weight: 500;\">";
-        echo strip_tags($result['user']);
+        echo strip_tags(ft_get_username($result['user'], $dbh));
         echo " on the ";
         echo $result['creation_date'];
       echo " :</span>";

@@ -2,7 +2,16 @@
 
 session_start();
 require_once '../config/database.php';
-require('../functions/get_id.php');
+require('get_id.php');
+
+if (!isset($_SESSION['usr_name']) || $_SESSION['usr_name'] == '') {
+  //If no user is logged in, then redirects to index.php
+  header('Location: ../index.php');
+  return;
+}
+else {
+  return;
+}
 
 $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
 $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -40,7 +49,7 @@ if (isset($_POST['img'])) {
   merge_images("../img/". $file, "../img/filters/" . $_POST['selected_filter']);
 
   $picture_id = $file;
-  $user = ft_get_id($_SESSION['usr_name']);
+  $user = ft_get_id($_SESSION['usr_name'], $dbh);
   $sql = "INSERT INTO camagru.pictures (user, picture_id) VALUES (:user, :picture_id)";
   $req = $dbh->prepare($sql);
   $req->bindValue('user', strip_tags($user));

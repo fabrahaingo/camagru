@@ -1,8 +1,6 @@
 <?php
 
-function ft_get_id($login) {
-  require('config/database.php');
-  $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
+function ft_get_id($login, $dbh) {
   $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $sql = 'CREATE DATABASE IF NOT EXISTS camagru';
   $dbh->exec($sql);
