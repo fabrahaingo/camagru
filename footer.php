@@ -4,6 +4,6 @@
     Made with ❤️ by frahaing
   </div>
   <div>
-    May 2018
+    August 2018
   </div>
 </footer>
