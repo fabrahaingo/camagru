@@ -9,9 +9,6 @@ if (!isset($_SESSION['usr_name']) || $_SESSION['usr_name'] == '') {
   header('Location: ../index.php');
   return;
 }
-else {
-  return;
-}
 
 $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
 $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
