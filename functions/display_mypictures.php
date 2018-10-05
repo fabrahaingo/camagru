@@ -1,7 +1,7 @@
 <?php
 
 require('config/database.php');
-$con = mysqli_connect("localhost","root","coucou","camagru");
+require('functions/get_id.php');
 
 $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
 $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -9,13 +9,18 @@ $sql = "CREATE DATABASE IF NOT EXISTS camagru";
 $dbh->exec($sql);
 
 // Count all pictures in database
-$sql = 'SELECT * FROM camagru.pictures WHERE user = "' . $_SESSION['usr_name'] . '"';
-$req = mysqli_query($con, $sql);
+$sql = 'SELECT COUNT(*) FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name'], $dbh) . '"';
+$req = $dbh->prepare($sql);
+$req->execute();
+// Gets the number of rows found
+$count_start = $req->fetch(PDO::FETCH_ASSOC);
+if ($count_start) {
+  $count_start = array_values($count_start)[0];
+}
 if (!$req)
   return;
-if (!($count_start = mysqli_num_rows($req))) {
+else if (!($count_start))
   return;
-}
 
 if (!isset($_GET['page'])) {
   $i = 1;
@@ -29,10 +34,10 @@ echo "<tr><th>My Pictures</th></tr>";
 
 // If number of pictures is > 5
 if ($count_start > 5) {
-  $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . $_SESSION['usr_name'] . "\" LIMIT " . 5 * $i;
-  $req = mysqli_query($con, $sql) or die('There was the problem with your request');
-  $count = mysqli_num_rows($req);
-  while ($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
+  $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name'], $dbh) . "\" LIMIT " . 5 * $i;
+  $req = $dbh->prepare($sql);
+  $req->execute();
+  while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr><td>";
     echo "<img src=\"img/" . $row['picture_id'] . "\" alt=\"Picture of " . $row['user'] . "\" />";
     echo "</td><td>";
@@ -41,7 +46,7 @@ if ($count_start > 5) {
     if (isset($_SESSION['usr_name'])) {
       echo "<form method=\"POST\" action=\"functions/delete_picture.php\">";
           echo "<input type=\"hidden\" name=\"picture_id\" value=\"" . $row['picture_id'] . "\"></input>";
-          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . $_SESSION['usr_name'] . "\"></input>";
+          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name'], $dbh) . "\"></input>";
           echo "<input type=\"submit\" name=\"like\" value=\"Yes I do\"></input>";
         echo "</form>";
       }
@@ -49,13 +54,21 @@ if ($count_start > 5) {
   };
 }
 
-$sql = 'SELECT * FROM camagru.pictures WHERE user = "' . $_SESSION['usr_name'] . "\"";
-$req = mysqli_query($con, $sql) or die('There was the problem with your request');
-$count = mysqli_num_rows($req);
+$sql = 'SELECT COUNT(*) FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name'], $dbh) . "\"";
+$req = $dbh->prepare($sql);
+$req->execute();
+// Gets the number of rows found
+$count = $req->fetch(PDO::FETCH_ASSOC);
+if ($count) {
+  $count = array_values($count)[0];
+}
 
 // If number of pictures is <= 5
 if ($count <= 5) {
-  while ($row = mysqli_fetch_array($req, MYSQLI_ASSOC)) {
+  $sql = 'SELECT * FROM camagru.pictures WHERE user = "' . ft_get_id($_SESSION['usr_name'], $dbh) . "\"";
+  $req = $dbh->prepare($sql);
+  $req->execute();
+  while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
     $i = 1;
     echo "<tr><td>";
     echo "<img src=\"img/" . $row['picture_id'] . "\" alt=\"Picture of " . $row['user'] . "\" />";
@@ -65,7 +78,7 @@ if ($count <= 5) {
     if (isset($_SESSION['usr_name'])) {
       echo "<form method=\"POST\" action=\"functions/delete_picture.php\">";
           echo "<input type=\"hidden\" name=\"picture_id\" value=\"" . $row['picture_id'] . "\"></input>";
-          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . $_SESSION['usr_name'] . "\"></input>";
+          echo "<input type=\"hidden\" name=\"usr_name\" value=\"" . ft_get_id($_SESSION['usr_name'], $dbh) . "\"></input>";
           echo "<input type=\"submit\" name=\"like\" value=\"Yes I do\"></input>";
         echo "</form>";
       }

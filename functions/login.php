@@ -2,7 +2,6 @@
 
 require ('config/setup.php');
 require_once ('functions/secure_password.php');
-$con = mysqli_connect("localhost","root","coucou","camagru");
 
 // ACCOUNT ACTIVATION
 
@@ -10,7 +9,7 @@ if (isset($_GET['email']) && isset($_GET['hash'])) {
   if ($_GET['hash'] == hash('sha3-512', "little".$_GET['email']."secret")) {
     $sql = "SELECT activated FROM users WHERE email = :email";
     $req = $dbh->prepare($sql);
-    $req->bindValue(':email', mysqli_real_escape_string($con, $_GET['email']));
+    $req->bindValue(':email', $_GET['email']);
     $req->execute();
     $req = $req->fetch(PDO::FETCH_ASSOC);
 
@@ -26,7 +25,7 @@ if (isset($_GET['email']) && isset($_GET['hash'])) {
     else if (implode($req) == 0) {
       $sql = "UPDATE users SET activated = 1 WHERE email = :email";
       $req = $dbh->prepare($sql);
-      $req->bindValue(':email', mysqli_real_escape_string($con, $_GET['email']));
+      $req->bindValue(':email', $_GET['email']);
       $req->execute();
       $req = $req->fetch(PDO::FETCH_ASSOC); ?>
       <div class="error_message success_message">
@@ -51,7 +50,7 @@ if (isset($_GET['action']) && $_GET['action'] == "reset") {
   if (isset($_GET['email']) && isset($_GET['hash'])) {
     $sql = "SELECT password FROM users WHERE email = :email";
     $req = $dbh->prepare($sql);
-    $req->bindValue(':email', mysqli_real_escape_string($con, $_GET['email']));
+    $req->bindValue(':email', $_GET['email']);
     $req->execute();
     $req = $req->fetch(PDO::FETCH_ASSOC);
     $password = implode($req);
@@ -86,7 +85,7 @@ if (isset($_GET['action']) && $_GET['action'] == "reset") {
             $sql = "UPDATE users SET password = :new_password WHERE email = :usr_email";
             $req = $dbh->prepare($sql);
             $req->bindValue(':new_password', hash('sha3-512', $_POST['password1']));
-            $req->bindValue(':usr_email', mysqli_real_escape_string($con, $_GET['email']));
+            $req->bindValue(':usr_email', $_GET['email']);
             $req->execute();
             ?>
             <div class="error_message success_message">
@@ -119,8 +118,8 @@ if (isset($_GET['action']) && $_GET['action'] == "reset") {
 // CONNECT TO THE ACCOUNT
 
 if (isset($_POST['connect'])) {
-  $login_or_mail = !empty($_POST['login']) ? mysqli_real_escape_string($con, trim($_POST['login'])) : null;
-  $password = !empty($_POST['password']) ? mysqli_real_escape_string($con, trim($_POST['password'])) : null;
+  $login_or_mail = !empty($_POST['login']) ? trim($_POST['login']) : null;
+  $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
   //Creates to password hash to compare with login/email
   $passwordHash = hash('sha3-512', $password);
@@ -172,7 +171,7 @@ if (isset($_POST['connect'])) {
 if (isset($_POST['send_link_password'])) {
   $sql = "SELECT login FROM users WHERE email = :provided_email";
   $req = $dbh->prepare($sql);
-  $req->bindValue(':provided_email', mysqli_real_escape_string($con, $_POST['email']));
+  $req->bindValue(':provided_email', $_POST['email']);
   $req->execute();
   $req = $req->fetch(PDO::FETCH_ASSOC);
   if ($req)
@@ -183,7 +182,7 @@ if (isset($_POST['send_link_password'])) {
     // Gets the users current password hash to send to the mail function
     $sql = "SELECT password FROM users WHERE email = :provided_email";
     $req = $dbh->prepare($sql);
-    $req->bindValue(':provided_email', mysqli_real_escape_string($con, $_POST['email']));
+    $req->bindValue(':provided_email', $_POST['email']);
     $req->execute();
     $req = $req->fetch(PDO::FETCH_ASSOC);
     $passhash = implode($req);
@@ -200,7 +199,7 @@ if (isset($_POST['send_link_password'])) {
   // If no user has this email
   else { ?>
     <div class="error_message">
-      <span>No user with this enail was registered before</span>
+      <span>No user with this email was registered before</span>
     </div>
   <?php }
 }

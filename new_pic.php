@@ -7,7 +7,9 @@
 </head>
 <body>
     <?php include ("header.php"); ?>
-    <?php include ("camera_section.php"); ?>
+    <div id="wrap_camera_section">
+      <?php include ("camera_section.php"); ?>
+    </div>
     <?php include ("footer.php"); ?>
 </body>
 </html>

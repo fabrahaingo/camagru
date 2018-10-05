@@ -1,8 +1,9 @@
 <?php
 
+require('get_username.php');
+
 function display_comments($picture_id) {
   require('config/database.php');
-  $con = mysqli_connect("localhost","root","coucou","camagru");
   $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
   $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $sql = 'CREATE DATABASE IF NOT EXISTS camagru';
@@ -10,12 +11,12 @@ function display_comments($picture_id) {
 
   $sql = "SELECT * FROM camagru.comments WHERE picture_id = :picture ORDER BY id DESC";
   $req = $dbh->prepare($sql);
-  $req->bindValue('picture', strip_tags(mysqli_real_escape_string($con, $picture_id)));
+  $req->bindValue('picture', strip_tags($picture_id));
   $req->execute();
   while ($result = $req->fetch(PDO::FETCH_ASSOC)) {
     echo "<div>";
-      echo "<span style=\"text-decoration: underline; font-weight: 500;\">By ";
-        echo strip_tags($result['user']);
+      echo "<span style=\"text-decoration: underline; font-weight: 500;\">";
+        echo strip_tags(ft_get_username($result['user'], $dbh));
         echo " on the ";
         echo $result['creation_date'];
       echo " :</span>";
@@ -36,7 +37,6 @@ if (isset($_POST['sent_comment']) && trim($_POST['new_comment']) === "") {
 if (isset($_POST['sent_comment']) && isset($_POST['usr_name'])) {
   require('../config/database.php');
   require('mail.php');
-  $con = mysqli_connect("localhost","root","coucou","camagru");
   $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);
   $dbh->setattribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $sql = 'CREATE DATABASE IF NOT EXISTS camagru';
@@ -44,15 +44,15 @@ if (isset($_POST['sent_comment']) && isset($_POST['usr_name'])) {
 
   $sql = "INSERT INTO camagru.comments (user, picture_id, comment) VALUES (:usr_name, :picture_id, :new_comment)";
   $req = $dbh->prepare($sql);
-  $req->bindValue('usr_name', strip_tags(mysqli_real_escape_string($con, $_POST['usr_name'])));
-  $req->bindValue('picture_id', mysqli_real_escape_string($con, $_POST['picture_id']));
+  $req->bindValue('usr_name', strip_tags($_POST['usr_name']));
+  $req->bindValue('picture_id', $_POST['picture_id']);
   $req->bindValue('new_comment', strip_tags($_POST['new_comment']));
   $req->execute();
 
   // STEP 1 : get user to which belongs the picture
   $sql = "SELECT user FROM camagru.pictures WHERE picture_id = :picture_id";
   $req = $dbh->prepare($sql);
-  $req->bindValue(':picture_id', mysqli_real_escape_string($con, $_POST['picture_id']));
+  $req->bindValue(':picture_id', $_POST['picture_id']);
   $req->execute();
   $req = $req->fetch(PDO::FETCH_ASSOC);
   $login = implode($req);
@@ -60,7 +60,7 @@ if (isset($_POST['sent_comment']) && isset($_POST['usr_name'])) {
   // STEP 2 : get 'comment_mail' value of user
   $sql = "SELECT comment_mail FROM camagru.users WHERE login = :user";
   $req = $dbh->prepare($sql);
-  $req->bindValue(':user', strip_tags(mysqli_real_escape_string($con, $_POST['usr_name'])));
+  $req->bindValue(':user', strip_tags($_POST['usr_name']));
   $req->execute();
   $req = $req->fetch(PDO::FETCH_ASSOC);
   $comment_mail = implode($req);

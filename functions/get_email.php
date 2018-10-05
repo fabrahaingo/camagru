@@ -1,7 +1,5 @@
 <?php
 
-$con = mysqli_connect("localhost","root","coucou","camagru");
-
 function ft_get_email($login) {
   require('config/database.php');
   $dbh = new PDO('mysql:host=localhost', $DB_USER, $DB_PASSWORD);

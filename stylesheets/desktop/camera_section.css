@@ -1,3 +1,71 @@
+/* * {
+  border: 1px solid black;
+} */
+
+#wrap_camera_section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: white;
+  background-image: url("https://cdn.spacetelescope.org/archives/images/wallpaper2/heic1509a.jpg");
+}
+
+#camera_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#camera_wrapper > form {
+  display: flex;
+  flex-direction: column;
+}
+
+#mypictures {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 600px;
+  overflow: auto;
+}
+
+#mypictures tr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* INDIV ELEMENTS */
+
+#photo {
+  opacity: 0.8;
+  max-width: 300px;
+}
+
+#video {
+  max-width: 300px;
+}
+
+#mypictures img {
+  width: 150px;
+}
+
+#mypictures input[type="submit"] {
+  background: black;
+  color: white;
+  border-radius: 5px;
+}
+
+#capture {
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  visibility: hidden;
+}
+
 .filter-selector input{
     margin: 0;
     padding: 0;
